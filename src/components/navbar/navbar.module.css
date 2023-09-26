@@ -7,7 +7,9 @@
 
 .social {
   display: flex;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
   flex: 1;
 }
 
@@ -21,8 +23,10 @@
 .links {
   flex: 1;
   display: flex;
-  gap: 20px;
+  justify-content: flex-end;
   align-items: center;
+  gap: 20px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 1280px) {
