@@ -42,6 +42,13 @@ const AuthLinks = () => {
               <span className={styles.link}>Logout</span>
             </>
           )}
+          <div className={styles.borderLine}></div>
+          <Link href="/">Style</Link>
+          <Link href="/">Fashion</Link>
+          <Link href="/">Food</Link>
+          <Link href="/">Travel</Link>
+          <Link href="/">Culture</Link>
+          <Link href="/">Coding</Link>
         </div>
       )}
     </>

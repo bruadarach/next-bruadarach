@@ -3,11 +3,6 @@ import styles from "./featured.module.css";
 import Image from "next/image";
 import { Roboto } from "next/font/google";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700", "900"],
-});
-
 const Featured = () => {
   return (
     <div className="styles.container">
@@ -25,7 +20,7 @@ const Featured = () => {
         </div>
         <div className={styles.textContainer}>
           <h1 className={styles.postTitle}>New features in Next.js 13</h1>
-          <p className={`${styles.postDesc} ${roboto.className}`}>
+          <p className={styles.postDesc}>
             Next.js 13 introduces a powerful new Image component, allowing you
             to easily display images without layout shift and optimize files
             on-demand for increased performance.

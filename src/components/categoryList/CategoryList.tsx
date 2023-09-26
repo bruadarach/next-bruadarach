@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import SectionTitle from "../sectionTitle/SectionTitle";
 
 const CategoryList = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Popular Categories</h1>
+      <SectionTitle title="Categories" />
       <div className={styles.categories}>
         <Link
           href="/blog?cat=style"

@@ -18,20 +18,31 @@
   background-color: var(--textColor);
 }
 
+.borderLine {
+  width: 30%;
+  height: 1px;
+  background-color: grey;
+  border-radius: 2px;
+  margin: 20px 0px;
+}
+
 .responsiveMenu {
   position: absolute;
   top: 100px;
   left: 0;
   background-color: var(--bg);
-  height: calc(100vh - 100px);
   width: 100%;
+  min-height: calc(100vh - 100px);
+  padding: 20px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  font-size: 28px;
-  z-index: 999;
+  gap: 24px;
+  font-size: 24px;
+  z-index: 99;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
 }
 
 @media screen and (min-width: 641px) {

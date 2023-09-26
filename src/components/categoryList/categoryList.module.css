@@ -1,10 +1,6 @@
 .container {
 }
 
-.title {
-  margin: 50px 0px;
-}
-
 .categories {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -19,6 +15,7 @@
   text-transform: capitalize;
   border-radius: 10px;
   padding: 10px;
+  font-weight: 500;
 }
 
 .category.style {
@@ -55,13 +52,23 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 640) {
+  .category {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+
   .categories {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 380px) {
   .categories {
     grid-template-columns: repeat(1, 1fr);
   }

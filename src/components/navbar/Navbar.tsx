@@ -20,7 +20,7 @@ const Navbar = () => {
         <ThemeToggle />
       </div>
       <div className={styles.logo}>BRUADARACH.</div>
-      <div className={`${styles.links} ${nunitoSans.className}`}>
+      <div className={styles.links}>
         <Link href="/" className={styles.link}>
           About
         </Link>

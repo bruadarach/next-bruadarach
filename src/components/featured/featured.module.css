@@ -5,7 +5,6 @@
 .post {
   margin-top: 60px;
   display: flex;
-  /* align-items: center; */
   align-items: flex-start;
   gap: 50px;
 }
@@ -33,10 +32,6 @@
 
 .postDesc {
   font-size: 18px;
-  font-weight: 300;
-  color: var(--softTextColor);
-  line-height: 1.5;
-  text-align: justify;
 }
 
 .button {
@@ -48,6 +43,7 @@
   width: max-content;
   cursor: pointer;
   transition: 0.2s ease;
+  font-family: var(--font-openSans);
 }
 
 .button:hover {
