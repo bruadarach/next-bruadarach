@@ -15,7 +15,7 @@ const ThemeToggle = () => {
       style={
         theme === "dark"
           ? { backgroundColor: "white" }
-          : { backgroundColor: "#0f172a" }
+          : { backgroundColor: "#021c1c" }
       }
     >
       <Image
@@ -29,7 +29,7 @@ const ThemeToggle = () => {
         className={styles.circle}
         style={
           theme === "dark"
-            ? { left: 2, background: "#0f172a" }
+            ? { left: 2, background: "#021c1c" }
             : { right: 3, background: "white" }
         }
       ></div>

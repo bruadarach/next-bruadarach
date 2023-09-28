@@ -1,4 +1,11 @@
-import { Inter, Open_Sans, Nunito_Sans, Roboto } from "next/font/google";
+import {
+  Inter,
+  Open_Sans,
+  Nunito_Sans,
+  Roboto,
+  Permanent_Marker,
+  Croissant_One,
+} from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -23,4 +30,18 @@ export const roboto = Roboto({
   display: "swap",
   weight: ["100", "300", "400", "500", "700", "900"],
   variable: "--font-roboto",
+});
+
+export const permanentMarker = Permanent_Marker({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+  variable: "--font-permanent-marker",
+});
+
+export const croissantOne = Croissant_One({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400"],
+  variable: "--font-croissant-one",
 });

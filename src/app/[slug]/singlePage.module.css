@@ -1,0 +1,101 @@
+.container {
+  margin-top: 80px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.textContainer h1 {
+  font-size: 60px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 20px;
+  font-family: var(--font-nunito-sans);
+}
+
+.date {
+  display: flex;
+  gap: 20px;
+  color: #b0b0b0;
+}
+
+.articleImageContainer {
+  height: 500px;
+  position: relative;
+}
+
+.articleImage {
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.post {
+  flex: 5;
+}
+
+.desc {
+  margin-top: 50px;
+}
+
+.desc p {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 30px 0;
+}
+
+.side {
+  flex: 2;
+  margin-top: -55px;
+}
+
+@media screen and (max-width: 1024px) {
+  .side {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .textContainer h1 {
+    font-size: 46px;
+  }
+
+  .date {
+    flex-direction: column;
+  }
+
+  .divisor {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .textContainer h1 {
+    font-size: 40px;
+  }
+}

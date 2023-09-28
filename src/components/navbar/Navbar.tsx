@@ -19,8 +19,13 @@ const Navbar = () => {
         <SocialAccount />
         <ThemeToggle />
       </div>
-      <div className={styles.logo}>BRUADARACH.</div>
+      <div className={styles.logo}>
+        <Link href="/">BRUADARACH.</Link>
+      </div>
       <div className={styles.links}>
+        <Link href="/" className={styles.link}>
+          Home
+        </Link>
         <Link href="/" className={styles.link}>
           About
         </Link>
