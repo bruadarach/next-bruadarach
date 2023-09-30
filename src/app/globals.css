@@ -26,7 +26,8 @@ li {
   list-style: none;
 }
 
-p {
+p,
+textarea {
   font-family: var(--font-roboto);
   font-weight: 300;
   color: var(--softTextColor);
