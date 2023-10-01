@@ -5,7 +5,7 @@
 .burger {
   width: 20px;
   height: 16px;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
@@ -21,28 +21,42 @@
 .borderLine {
   width: 30%;
   height: 1px;
-  background-color: grey;
+  background-color: white;
   border-radius: 2px;
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
-.responsiveMenu {
-  position: absolute;
-  top: 100px;
-  left: 0;
+.responsiveMenus {
   background-color: var(--bg);
   width: 100%;
-  min-height: calc(100vh - 100px);
-  padding: 20px 0px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 80px;
+  overflow-y: hidden;
+}
+
+.responsiveMenuWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-  font-size: 24px;
-  z-index: 99;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
+  justify-content: space-evenly;
+  gap: 22px;
+  font-size: 22px;
+  height: 90vh;
+}
+
+.icon {
+  font-size: 33px;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
 }
 
 @media screen and (min-width: 641px) {
