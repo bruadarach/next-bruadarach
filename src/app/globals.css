@@ -63,6 +63,11 @@ textarea {
   padding-right: 80px;
 }
 
+.ql-container {
+  font-size: 20px !important;
+  min-height: 600px !important;
+}
+
 @media screen and (max-width: 1536px) {
   .wrapper {
     max-width: 1366px;
