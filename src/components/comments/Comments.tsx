@@ -41,6 +41,28 @@ const Comments = () => {
             voluptates sed nulla sequi.
           </p>
         </div>
+        <div className={styles.comment}>
+          <div className={styles.user}>
+            <Image
+              src="/logo.png"
+              alt="user"
+              width={42}
+              height={42}
+              priority
+              className={styles.userImage}
+            />
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>Deoqua</span>
+              <span className={styles.date}>2023.11.11</span>
+            </div>
+          </div>
+          <p className={styles.desc}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque earum
+            voluptatem praesentium expedita deleniti eaque, ut vitae, iusto
+            velit assumenda aut culpa sint eligendi delectus. Consectetur
+            voluptates sed nulla sequi.
+          </p>
+        </div>
       </div>
     </div>
   );
