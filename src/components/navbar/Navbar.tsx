@@ -21,10 +21,10 @@ const Navbar = () => {
       <div className={styles.logo}>BRUADARACH.</div>
       <div className={styles.links}>
         <Link href="/" className={styles.link}>
-          About
+          Home
         </Link>
-        <Link href="/" className={styles.link}>
-          Contact
+        <Link href="/about" className={styles.link}>
+          About
         </Link>
         <AuthLinks />
       </div>
