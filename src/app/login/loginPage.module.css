@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.wrapper {
+  background-color: var(--softBg);
+  padding: 130px 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 10px;
+}
+
+.socialButton {
+  width: 300px;
+  height: 60px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.socialButton:first-child {
+  background-color: #db4437;
+}
+
+.icon {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialButton:nth-child(2) {
+  background-color: black;
+}
+
+.socialButton:nth-child(3) {
+  background-color: #4267b2;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    padding: 130px 100px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    padding: 130px 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: 130px 40px;
+  }
+
+  .socialButton {
+    font-size: 14px;
+    width: 220px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .container {
+    padding: 0;
+    width: 100%;
+  }
+
+  .wrapper {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .socialButton {
+    font-size: 12px;
+    min-width: 100px;
+    width: 100%;
+    height: 60px;
+  }
+
+  .icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 270px) {
+  .container {
+    min-width: 180px;
+  }
+}

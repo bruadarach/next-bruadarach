@@ -31,6 +31,10 @@
   gap: 10px;
 }
 
+.info p {
+  margin-left: 8px;
+}
+
 .links {
   flex: 1;
   display: flex;
