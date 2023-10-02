@@ -1,18 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
-
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-});
+import ReactQuill from "react-quill";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+// import dynamic from "next/dynamic";
+// const ReactQuill = dynamic(() => import("react-quill"), {
+//   ssr: false,
+// });
 
 const Write = () => {
+  const { status } = useSession();
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [router, status]);
+
+  if (status === "loading") {
+    return <div className={styles.loading}>Loading...</div>;
+  }
 
   return (
     <div className={styles.container}>
