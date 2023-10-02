@@ -52,9 +52,9 @@
   }
 }
 
-@media screen and (max-width: 640) {
+@media screen and (max-width: 640px) {
   .category {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
