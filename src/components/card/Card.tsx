@@ -2,34 +2,34 @@ import React from "react";
 import styles from "./card.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { Post } from "../../../prisma/schemaTypes";
 
-const Card = () => {
+const Card = ({ post }: { post: Post }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.imageContainer}>
-        <Image
-          src="/p1.jpeg"
-          alt="thumbnail"
-          fill
-          sizes="100%"
-          priority
-          className={styles.image}
-        />
-      </div>
+      {post.img && (
+        <div className={styles.imageContainer}>
+          <Image
+            src={post.img}
+            alt="thumbnail"
+            fill
+            sizes="100%"
+            priority
+            className={styles.image}
+          />
+        </div>
+      )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>11.01.01 - </span>
-          <span className={styles.category}>CULTURE</span>
+          <span className={styles.date}>
+            {new Date(post.createdAt).toISOString().split("T")[0]} -{" "}
+          </span>
+          <span className={styles.category}>{post.catSlug}</span>
         </div>
         <Link href="/">
-          <h1>Lorem ipsum dolor sit amet </h1>
+          <h1>{post.title}</h1>
         </Link>
-        <p className={styles.desc}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-          necessitatibus, deleniti ad, temporibus mollitia dolore magnam, iste
-          dolor earum fugiat corporis nulla incidunt laborum est laboriosam
-          minus atque tempore culpa!
-        </p>
+        <p className={styles.desc}>{post.desc}</p>
         <Link href="/" className={styles.link}>
           Read More ➚
         </Link>
