@@ -1,2 +1,26 @@
 .container {
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-family: var(--font-openSans);
+  background-color: crimson;
+  color: white;
+}
+
+.button:hover {
+  background-color: #dc143ccc;
+}
+
+.button:disabled {
+  background-color: #dc143c79;
+  cursor: not-allowed;
 }

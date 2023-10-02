@@ -4,13 +4,21 @@ import CategoryList from "@/components/categoryList/CategoryList";
 import CardList from "@/components/cardList/CardList";
 import Side from "@/components/side/Side";
 
-export default function Home() {
+interface Props {
+  searchParams: {
+    page: string;
+  };
+}
+
+export default function Home({ searchParams }: Props) {
+  const page = parseInt(searchParams.page) || 1;
+
   return (
     <div className={styles.container}>
       <Featured />
       <CategoryList />
       <div className={styles.content}>
-        <CardList />
+        <CardList page={page} />
         <Side />
       </div>
     </div>
