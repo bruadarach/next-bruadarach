@@ -4,11 +4,21 @@ import CardList from "@/components/cardList/CardList";
 import Side from "@/components/side/Side";
 import Image from "next/image";
 
-const BlogPage = () => {
+interface Props {
+  searchParams: {
+    page: string;
+    cat: string;
+  };
+}
+
+const BlogPage = ({ searchParams }: Props) => {
+  const page = parseInt(searchParams.page) || 1;
+  const { cat } = searchParams;
+
   return (
     <div className={styles.container}>
       <div className={styles.sectionTitle}>
-        <h1>Style</h1>
+        <h1>{cat}</h1>
         <div className={styles.imageContainer}>
           <Image
             src="/blog.png"
@@ -21,7 +31,7 @@ const BlogPage = () => {
         </div>
       </div>
       <div className={styles.content}>
-        <CardList />
+        <CardList page={page} cat={cat} />
         <Side />
       </div>
     </div>

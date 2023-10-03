@@ -8,13 +8,17 @@ import { POST } from "@/app/api/auth/[...nextauth]/route";
 
 interface CardListProps {
   page: number;
+  cat?: string | undefined;
 }
 
-const getData = async (page: number) => {
+const getData = async (page: number, cat?: string | undefined) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/posts?page=${page}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.error("Fetch error:", res.status, res.statusText);
@@ -27,9 +31,8 @@ const getData = async (page: number) => {
   }
 };
 
-const CardList = async ({ page }: CardListProps) => {
-  // const data = await getData(page);
-  const { posts, count } = await getData(page);
+const CardList = async ({ page, cat }: CardListProps) => {
+  const { posts, count } = await getData(page, cat);
 
   const POST_PER_PAGE = 2;
 
@@ -43,10 +46,6 @@ const CardList = async ({ page }: CardListProps) => {
         {posts.map((post: Post) => (
           <Card key={post._id} post={post} />
         ))}
-        {/* <Card />
-        <Card />
-        <Card />
-        <Card /> */}
       </div>
       <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
     </div>
