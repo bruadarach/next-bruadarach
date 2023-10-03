@@ -4,12 +4,6 @@ import Link from "next/link";
 import AuthLinks from "../authLinks/AuthLinks";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import SocialAccount from "../socialAccount/SocialAccount";
-import { Nunito_Sans } from "next/font/google";
-
-const nunitoSans = Nunito_Sans({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "600", "700", "800", "900", "1000"],
-});
 
 const Navbar = () => {
   return (
