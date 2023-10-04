@@ -65,9 +65,10 @@ export interface Post {
   comments: Comment[];
 }
 
-export interface Comment {
-  _id: string;
+export interface CommentProps {
+  id: string;
   createdAt: Date;
+  updatedAt: Date;
   desc: string;
   userEmail: string;
   user: User;

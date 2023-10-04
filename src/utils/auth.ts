@@ -3,8 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 // import FacebookProvider from "next-auth/providers/facebook";
 import { getServerSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-// import { PrismaClient } from "@prisma/client";
-// const prisma = new PrismaClient();
 import prisma from "@/utils/connect";
 
 export const authOptions = {

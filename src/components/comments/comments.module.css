@@ -44,9 +44,13 @@
   margin: 50px 0;
 }
 
+.login {
+  font-size: 18px;
+}
+
 .comment {
-  padding-bottom: 40px;
-  border-bottom: 0.1px solid #e9e9e9;
+  padding-top: 40px;
+  border-top: 0.1px solid #e9e9e9;
 }
 
 .user {
@@ -80,4 +84,76 @@
 .desc {
   font-weight: 18;
   font-weight: 300;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.buttons button {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-openSans);
+  font-weight: 600;
+  transition: 0.2s ease;
+  width: max-content;
+  color: white;
+}
+
+.buttons button:first-child {
+  background-color: navy;
+}
+
+.buttons button:first-child:hover {
+  background-color: #000080c5;
+}
+
+.buttons button:last-child {
+  background-color: #a21833;
+}
+
+.buttons button:last-child:hover {
+  background-color: #a21834a4;
+}
+
+.buttonsForEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.buttonsForEdit button {
+  width: 100%;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-openSans);
+  font-weight: 600;
+  transition: 0.2s ease;
+  color: white;
+}
+
+.buttonsForEdit button:first-child {
+  background-color: navy;
+}
+
+.buttonsForEdit button:first-child:hover {
+  background-color: #000080c5;
+}
+
+.buttonsForEdit button:last-child {
+  background-color: #bdbdbd;
+}
+
+.buttonsForEdit button:last-child:hover {
+  background-color: #bdbdbdc5;
 }

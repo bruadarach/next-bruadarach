@@ -27,11 +27,6 @@ const getData = async (slug: string) => {
   }
 };
 
-const createMarkup = (htmlString: string) => {
-  console.log(htmlString, "htmlString");
-  return { __html: htmlString };
-};
-
 const singlePage = async ({ params }: singlePageProps) => {
   const { slug } = params;
   const post = await getData(slug);
@@ -86,7 +81,7 @@ const singlePage = async ({ params }: singlePageProps) => {
             <p dangerouslySetInnerHTML={{ __html: post.desc }} />
           </div>
           <div className={styles.comments}>
-            <Comments />
+            <Comments postSlug={slug} />
           </div>
         </div>
         <div className={styles.side}>
