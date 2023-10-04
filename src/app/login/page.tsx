@@ -8,22 +8,9 @@ import {
   AiFillGithub,
   AiFillFacebook,
 } from "react-icons/ai";
-import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const { data, status } = useSession();
-  // console.log(data, status, "data", "status");
-  const router = useRouter();
-
-  const handleSignIn = (provider: string) => {
-    signIn(provider);
-  };
-
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push("/");
-    }
-  }, [router, status]);
+  const { status } = useSession();
 
   if (status === "loading") {
     return <div className={styles.loading}>Loading...</div>;
@@ -34,20 +21,28 @@ const LoginPage = () => {
       <div className={styles.wrapper}>
         <div
           className={styles.socialButton}
-          onClick={() => handleSignIn("google")}
+          onClick={() => signIn("google", { redirect: true, callbackUrl: "/" })}
         >
           <div className={styles.icon}>
             <AiFillGoogleCircle />
           </div>
           <div>Sign in with Google</div>
         </div>
-        <div className={styles.socialButton}>
+        <div
+          className={styles.socialButton}
+          onClick={() => signIn("github", { redirect: true, callbackUrl: "/" })}
+        >
           <div className={styles.icon}>
             <AiFillGithub />
           </div>
           <div>Sign in with Github</div>
         </div>
-        <div className={styles.socialButton}>
+        <div
+          className={styles.socialButton}
+          onClick={() =>
+            signIn("facebook", { redirect: true, callbackUrl: "/" })
+          }
+        >
           <div className={styles.icon}>
             <AiFillFacebook />
           </div>
