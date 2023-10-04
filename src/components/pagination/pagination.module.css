@@ -5,19 +5,19 @@
 .button {
   font-size: 14px;
   font-weight: 600;
-  padding: 12px 20px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  width: 100px;
+  width: 110px;
   cursor: pointer;
   transition: 0.2s ease;
   font-family: var(--font-openSans);
-  background-color: crimson;
+  background-color: #a21833;
   color: white;
 }
 
 .button:hover {
-  background-color: #dc143ccc;
+  background-color: #a21834a4;
 }
 
 .button:disabled {
