@@ -68,6 +68,10 @@ textarea {
   min-height: 600px !important;
 }
 
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  color: var(--textColor);
+}
+
 @media screen and (max-width: 1536px) {
   .wrapper {
     max-width: 1366px;
