@@ -5,6 +5,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "avatars.githubusercontent.com",
       "scontent-gmp1-1.xx.fbcdn.net",
+      "firebasestorage.googleapis.com",
     ],
   },
 };

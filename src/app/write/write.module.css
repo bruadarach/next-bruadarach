@@ -26,6 +26,49 @@
   color: white;
 }
 
+.customSelect {
+  position: relative;
+  width: max-content;
+}
+
+.select {
+  padding: 10px 20px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  text-transform: capitalize;
+  -webkit-appearance: none; /* Remove default arrow */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select::-ms-expand {
+  display: none; /* Remove default arrow in IE 10+ */
+}
+
+.select:focus {
+  border-color: #555555;
+  outline: none;
+  box-shadow: 0 0 5px rgba(85, 85, 85, 0.2);
+}
+
+.selectArrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid grey; /*  arrow color */
+}
+
 .container input {
   font-size: 44px;
   border: none;
@@ -49,6 +92,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .button,
@@ -66,4 +110,8 @@
 
 .addButton {
   border-color: grey;
+}
+
+.addButton label {
+  cursor: pointer;
 }
