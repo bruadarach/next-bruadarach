@@ -72,7 +72,7 @@ const singlePage = async ({ params }: singlePageProps) => {
                 width={400}
                 height={500}
                 priority
-                className={styles.articelImage}
+                className={styles.articleImage}
                 style={{ width: "100%" }}
               />
             </div>

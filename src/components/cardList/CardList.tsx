@@ -4,7 +4,6 @@ import Pagination from "../pagination/Pagination";
 import Card from "../card/Card";
 import SectionTitle from "../sectionTitle/SectionTitle";
 import { Post } from "../../../prisma/schemaTypes";
-import { POST } from "@/app/api/auth/[...nextauth]/route";
 
 interface CardListProps {
   page: number;
@@ -34,7 +33,7 @@ const getData = async (page: number, cat?: string | undefined) => {
 const CardList = async ({ page, cat }: CardListProps) => {
   const { posts, count } = await getData(page, cat);
 
-  const POST_PER_PAGE = 2;
+  const POST_PER_PAGE = 4;
 
   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
