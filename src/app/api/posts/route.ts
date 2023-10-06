@@ -2,24 +2,67 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
 
+interface QueryOptions {
+  take: number;
+  skip: number;
+  where: {
+    catSlug?: string;
+    slug?: {
+      in: string[];
+    };
+  };
+  orderBy: {
+    createdAt?: "asc" | "desc";
+    views?: "asc" | "desc";
+  };
+}
+
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
-  const page = searchParams.get("page") as unknown as number;
-  const cat = searchParams.get("cat") as unknown as string;
+  const page = parseInt(searchParams.get("page") || "1");
+  const cat = searchParams.get("cat");
+  const popular = searchParams.get("popular");
+  const postSlugs = searchParams.getAll("postSlug");
 
   const POST_PER_PAGE = 4;
 
-  const query = {
+  const query: QueryOptions = {
     take: POST_PER_PAGE,
     skip: POST_PER_PAGE * (page - 1),
-    where: {
-      ...(cat && { catSlug: cat }),
+    where: {},
+    orderBy: {
+      createdAt: "desc",
     },
   };
 
+  if (page) {
+    query.orderBy = {
+      views: "desc",
+    };
+  }
+
+  if (cat) {
+    query.where.catSlug = cat;
+  }
+
+  if (popular === "true") {
+    query.orderBy = {
+      views: "desc",
+    };
+  }
+
+  if (postSlugs.length > 0) {
+    query.where.slug = {
+      in: postSlugs,
+    };
+  }
+
   try {
     const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany(query),
+      prisma.post.findMany({
+        ...query,
+        include: { user: true },
+      }),
       prisma.post.count({
         where: query.where,
       }),

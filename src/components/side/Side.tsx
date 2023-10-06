@@ -2,17 +2,69 @@ import React from "react";
 import styles from "./side.module.css";
 import SectionTitle from "../sectionTitle/SectionTitle";
 import SidePost from "../sidePost/SidePost";
+import { Post } from "../../../prisma/schemaTypes";
 
-const Side = () => {
+const getPopularData = async () => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/posts?popular=true`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error("Fetch error:", res.status, res.statusText);
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("getData error:", error);
+    throw error;
+  }
+};
+
+const getSelectedPosts = async (postSlugs: string[]) => {
+  try {
+    const query = postSlugs.map((slug) => `postSlug=${slug}`).join("&");
+    const res = await fetch(`http://localhost:3000/api/posts?${query}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error("Fetch error:", res.status, res.statusText);
+      throw new Error("Failed");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("getData error:", error);
+    throw error;
+  }
+};
+
+const Side = async () => {
+  const { posts: popularPosts } = await getPopularData();
+  const postSlugs = [
+    "why",
+    "hi",
+    "lets-write-one-more-time",
+    "1",
+    "not-too-long-limit",
+  ];
+  const { posts: selectedPosts } = await getSelectedPosts(postSlugs);
+
   return (
     <div className={styles.container}>
       <div>
         <SectionTitle title={"Most Popular"} />
-        <SidePost />
+        {popularPosts &&
+          popularPosts.map((post: Post) => (
+            <SidePost key={post._id} post={post} />
+          ))}
       </div>
       <div>
         <SectionTitle title={"Editor's Picks"} />
-        <SidePost />
+        {selectedPosts &&
+          selectedPosts.map((post: Post) => (
+            <SidePost key={post._id} post={post} />
+          ))}
       </div>
     </div>
   );

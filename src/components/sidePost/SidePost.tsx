@@ -2,75 +2,34 @@ import React from "react";
 import styles from "./sidePost.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import { Post } from "../../../prisma/schemaTypes";
 
-const SidePost = () => {
+const SidePost = ({ post }: { post: Post }) => {
   return (
     <div className={styles.items}>
-      <Link href="/" className={styles.item}>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/p1.jpeg"
-            alt="thumbnail"
-            fill
-            sizes="100%"
-            className={styles.image}
-            priority
-          />
-        </div>
+      <Link href={`/posts/${post.slug}`} className={styles.item}>
+        {post.img && (
+          <div className={styles.imageContainer}>
+            <Image
+              src={post.img}
+              alt="thumbnail"
+              fill
+              sizes="100%"
+              className={styles.image}
+              priority
+            />
+          </div>
+        )}
         <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.fashion}`}>
-            Fashion
+          <span className={`${styles.category} ${styles[post.catSlug]}`}>
+            {post.catSlug}
           </span>
-          <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </h3>
+          <h3 className={styles.postTitle}>{post.title}</h3>
           <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
-          </div>
-        </div>
-      </Link>
-      <Link href="/" className={styles.item}>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/p1.jpeg"
-            alt="thumbnail"
-            fill
-            sizes="100%"
-            className={styles.image}
-            priority
-          />
-        </div>
-        <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.travel}`}>Travel</span>
-          <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </h3>
-          <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
-          </div>
-        </div>
-      </Link>
-      <Link href="/" className={styles.item}>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/p1.jpeg"
-            alt="thumbnail"
-            fill
-            sizes="100%"
-            className={styles.image}
-            priority
-          />
-        </div>
-        <div className={styles.textContainer}>
-          <span className={`${styles.category} ${styles.food}`}>Food</span>
-          <h3 className={styles.postTitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </h3>
-          <div className={styles.detail}>
-            <span className={styles.username}>John Doe</span>
-            <span className={styles.date}> - 10.03.2023</span>
+            <span className={styles.username}>{post.user.name}</span>
+            <span className={styles.date}>
+              - {new Date(post.createdAt).toLocaleDateString()}
+            </span>
           </div>
         </div>
       </Link>
