@@ -26,47 +26,52 @@ export const GET = async (req: Request) => {
 
   const POST_PER_PAGE = 4;
 
-  const query: QueryOptions = {
-    take: POST_PER_PAGE,
-    skip: POST_PER_PAGE * (page - 1),
-    where: {},
-    orderBy: {
-      createdAt: "desc",
-    },
-  };
-
-  if (page) {
-    query.orderBy = {
-      views: "desc",
-    };
-  }
-
-  if (cat) {
-    query.where.catSlug = cat;
-  }
-
-  if (popular === "true") {
-    query.orderBy = {
-      views: "desc",
-    };
-  }
-
-  if (postSlugs.length > 0) {
-    query.where.slug = {
-      in: postSlugs,
-    };
-  }
-
   try {
-    const [posts, count] = await prisma.$transaction([
-      prisma.post.findMany({
+    let posts;
+    if (postSlugs.length > 0) {
+      posts = await prisma.post.findMany({
+        where: {
+          slug: {
+            in: postSlugs,
+          },
+        },
+        include: { user: true },
+      });
+      posts.sort((a, b) => {
+        return postSlugs.indexOf(a.slug) - postSlugs.indexOf(b.slug);
+      });
+    } else {
+      const query: QueryOptions = {
+        take: POST_PER_PAGE,
+        skip: POST_PER_PAGE * (page - 1),
+        where: {},
+        orderBy: {
+          createdAt: "desc",
+        },
+      };
+
+      if (page) {
+        query.orderBy = {
+          views: "desc",
+        };
+      }
+
+      if (cat) {
+        query.where.catSlug = cat;
+      }
+
+      if (popular === "true") {
+        query.orderBy = {
+          views: "desc",
+        };
+      }
+      posts = await prisma.post.findMany({
         ...query,
         include: { user: true },
-      }),
-      prisma.post.count({
-        where: query.where,
-      }),
-    ]);
+      });
+    }
+
+    const count = posts.length;
     return new NextResponse(JSON.stringify({ posts, count }), { status: 200 });
   } catch (error) {
     console.log(error);

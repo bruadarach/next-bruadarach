@@ -50,20 +50,22 @@ const Side = async () => {
   ];
   const { posts: selectedPosts } = await getSelectedPosts(postSlugs);
 
+  console.log(selectedPosts, "selectedPosts");
+
   return (
     <div className={styles.container}>
       <div>
         <SectionTitle title={"Most Popular"} />
         {popularPosts &&
-          popularPosts.map((post: Post) => (
-            <SidePost key={post._id} post={post} />
+          popularPosts.map((post: Post, index: number) => (
+            <SidePost post={post} key={index} />
           ))}
       </div>
       <div>
         <SectionTitle title={"Editor's Picks"} />
         {selectedPosts &&
           selectedPosts.map((post: Post) => (
-            <SidePost key={post._id} post={post} />
+            <SidePost post={post} key={post._id} />
           ))}
       </div>
     </div>
