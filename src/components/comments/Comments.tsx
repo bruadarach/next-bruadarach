@@ -28,7 +28,7 @@ const Comments = ({ postSlug }: CommentsProps) => {
   const router = useRouter();
   const { status, data: sessionData } = useSession();
   const { data, mutate, isLoading } = useSWR(
-    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    `https://next-bruadarach.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher
   );
   const [desc, setDesc] = useState("");
@@ -52,7 +52,7 @@ const Comments = ({ postSlug }: CommentsProps) => {
       return;
     }
 
-    await fetch("http://localhost:3000/api/comments", {
+    await fetch("https://next-bruadarach.vercel.app/api/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ desc, postSlug }),
@@ -62,11 +62,14 @@ const Comments = ({ postSlug }: CommentsProps) => {
   };
 
   const handleSave = async (commentId: string) => {
-    await fetch(`http://localhost:3000/api/comments/${commentId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ desc: editedDesc }),
-    });
+    await fetch(
+      `https://next-bruadarach.vercel.app/api/comments/${commentId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ desc: editedDesc }),
+      }
+    );
     setSelectedCommentID(null);
     setEditedDesc(null);
     mutate();

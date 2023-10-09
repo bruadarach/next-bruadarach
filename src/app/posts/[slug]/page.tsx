@@ -61,7 +61,7 @@ const singlePage = async ({ params }: singlePageProps) => {
                 className={styles.userImage}
               />
             </div>
-            <div className={styles.userName}>{post.user.name}</div>
+            <div className={styles.userName}>{post.user?.name}</div>
           </div>
           <div className={styles.date}>
             <div className={styles.publishedDate}>
