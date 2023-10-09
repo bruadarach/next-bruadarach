@@ -52,9 +52,6 @@ const AuthLinks = () => {
             <Link href="/" onClick={closeMenu}>
               Homepage
             </Link>
-            <Link href="/about" onClick={closeMenu}>
-              About
-            </Link>
             {status === "unauthenticated" ? (
               <Link href="/login" onClick={closeMenu}>
                 Login
