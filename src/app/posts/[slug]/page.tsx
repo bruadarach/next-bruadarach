@@ -3,6 +3,11 @@ import styles from "./singlePage.module.css";
 import Image from "next/image";
 import Side from "@/components/side/Side";
 import Comments from "@/components/comments/Comments";
+import dynamic from "next/dynamic";
+const SessionButtons = dynamic(
+  () => import("@/components/sessionButtons/SessionButtons"),
+  { ssr: false }
+);
 
 interface singlePageProps {
   params: {
@@ -35,6 +40,12 @@ const singlePage = async ({ params }: singlePageProps) => {
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
+          <div className={styles.sessionButtons}>
+            <SessionButtons slug={slug} userEmail={post.user.email} />
+          </div>
+          <div className={`${styles.category} ${styles[post.catSlug]}`}>
+            {post.catSlug}
+          </div>
           <h1>{post.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
