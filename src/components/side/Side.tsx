@@ -50,8 +50,6 @@ const Side = async () => {
   ];
   const { posts: selectedPosts } = await getSelectedPosts(postSlugs);
 
-  console.log(selectedPosts, "selectedPosts");
-
   return (
     <div className={styles.container}>
       <div>
