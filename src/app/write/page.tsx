@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-// import dynamic from "next/dynamic";
-// const ReactQuill = dynamic(() => import("react-quill"), {
-//   ssr: false,
-// });
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 import {
   getStorage,
   ref,

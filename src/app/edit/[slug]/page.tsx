@@ -58,7 +58,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
       setMedia(post.img);
     };
     getPost();
-  }, []);
+  }, [params]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
