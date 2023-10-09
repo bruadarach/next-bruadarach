@@ -137,7 +137,6 @@ const Write = () => {
         </select>
         <div className={styles.selectArrow}></div>
       </div>
-
       <input
         type="text"
         placeholder="Title"
@@ -145,10 +144,6 @@ const Write = () => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <div className={styles.editor}>
-        {/* <button className={styles.button} onClick={() => setOpen(!open)}>
-          <Image src="/plus.png" alt="plus" width={20} height={20} priority />
-        </button> */}
-        {/* {open && ( */}
         <div className={styles.add}>
           <input
             type="file"
@@ -186,7 +181,6 @@ const Write = () => {
             />
           </button>
         </div>
-        {/* )} */}
         <ReactQuill
           theme="snow"
           value={value}

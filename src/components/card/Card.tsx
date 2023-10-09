@@ -31,7 +31,7 @@ const Card = ({ post }: { post: Post }) => {
         </Link>
         <p
           className={styles.desc}
-          dangerouslySetInnerHTML={{ __html: post.desc.substring(0, 300) }}
+          dangerouslySetInnerHTML={{ __html: post.desc }}
         />
         <Link href={`/posts/${post.slug}`} className={styles.link}>
           Read More ➚
