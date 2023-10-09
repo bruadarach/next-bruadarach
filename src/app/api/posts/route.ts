@@ -50,12 +50,6 @@ export const GET = async (req: Request) => {
         },
       };
 
-      if (page) {
-        query.orderBy = {
-          views: "desc",
-        };
-      }
-
       if (cat) {
         query.where.catSlug = cat;
       }
@@ -65,6 +59,7 @@ export const GET = async (req: Request) => {
           views: "desc",
         };
       }
+
       posts = await prisma.post.findMany({
         ...query,
         include: { user: true },
