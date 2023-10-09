@@ -105,14 +105,24 @@ const Write = () => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style", //If not selected, choose the general category
+        catSlug: catSlug || "style",
       }),
     });
 
     try {
-      const data = await res.json();
-      console.log(data, "data");
-      router.push(`/posts/${data.slug}`);
+      if (res.status === 200) {
+        const data = await res.json();
+        router.push(`/posts/${data.slug}`);
+      } else if (res.status === 400) {
+        const errorData = await res.json();
+        if (errorData.message === "Duplicate title") {
+          alert("Duplicate title. Please try another title.");
+        } else {
+          console.error("Unknown error:", errorData);
+        }
+      } else {
+        console.error("Unhandled response:", res.status);
+      }
     } catch (error) {
       console.log(error);
     }

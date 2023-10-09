@@ -43,7 +43,7 @@ export const GET = async (req: Request) => {
     } else {
       const query: QueryOptions = {
         take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (page - 1),
+        skip: POST_PER_PAGE * (page - 1), // 페이지 번호에 따라 스킵 수 계산
         where: {},
         orderBy: {
           createdAt: "desc",
@@ -66,7 +66,8 @@ export const GET = async (req: Request) => {
       });
     }
 
-    const count = posts.length;
+    const count = await prisma.post.count();
+
     return new NextResponse(JSON.stringify({ posts, count }), { status: 200 });
   } catch (error) {
     console.log(error);
@@ -86,6 +87,16 @@ export const POST = async (req: Request) => {
 
   try {
     const body = await req.json();
+
+    const existingPost = await prisma.post.findUnique({
+      where: { slug: body.slug },
+    });
+
+    if (existingPost) {
+      const errorMessage = JSON.stringify({ message: "Duplicate title" });
+      return new NextResponse(errorMessage, { status: 400 });
+    }
+
     const post = await prisma.post.create({
       data: {
         ...body,
