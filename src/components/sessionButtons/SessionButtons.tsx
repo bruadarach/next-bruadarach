@@ -5,6 +5,7 @@ import styles from "./sessionButtons.module.css";
 import EditButton from "@/components/editButton/EditButton";
 import DeleteButton from "@/components/deleteButton/DeleteButton";
 import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 
 const SessionButtons = ({
   slug,
@@ -27,4 +28,5 @@ const SessionButtons = ({
   );
 };
 
-export default SessionButtons;
+// export default SessionButtons;
+export default dynamic(() => Promise.resolve(SessionButtons), { ssr: false });

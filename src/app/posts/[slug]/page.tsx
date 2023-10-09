@@ -44,7 +44,7 @@ const singlePage = async ({ params }: singlePageProps) => {
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
           <div className={styles.sessionButtons}>
-            <SessionButtons slug={slug} userEmail={post.user.email} />
+            <SessionButtons slug={slug} userEmail={post.user?.email} />
           </div>
           <div className={`${styles.category} ${styles[post.catSlug]}`}>
             {post.catSlug}
@@ -53,7 +53,7 @@ const singlePage = async ({ params }: singlePageProps) => {
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
               <Image
-                src={post.user.image ? post.user.image : "/user.png"}
+                src={post.user?.image ? post.user?.image : "/user.png"}
                 alt="user"
                 width={42}
                 height={42}
