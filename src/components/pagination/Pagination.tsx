@@ -13,18 +13,22 @@ interface PaginationProps {
 const Pagination = ({ page, hasPrev, hasNext }: PaginationProps) => {
   const router = useRouter();
 
+  const goToPage = (newPage: number) => {
+    router.push(`/?page=${newPage}`);
+  };
+
   return (
     <div className={styles.container}>
       <button
         className={styles.button}
-        onClick={() => router.push(`?page=${page - 1}`)}
+        onClick={() => goToPage(page - 1)}
         disabled={!hasPrev}
       >
         ◀ Previous
       </button>
       <button
         className={styles.button}
-        onClick={() => router.push(`?page=${page + 1}`)}
+        onClick={() => goToPage(page + 1)}
         disabled={!hasNext}
       >
         Next ►
