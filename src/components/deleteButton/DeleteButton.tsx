@@ -4,7 +4,7 @@ import styles from "./deleteButton.module.css";
 const DeleteButton = ({ slug }: { slug: string }) => {
   const handleDelete = async (slug: string) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      await fetch(`http://localhost:3000/api/posts/${slug}`, {
+      await fetch(`https://next-bruadarach.vercel.app/api/posts/${slug}`, {
         method: "DELETE",
       });
       window.location.replace("/");

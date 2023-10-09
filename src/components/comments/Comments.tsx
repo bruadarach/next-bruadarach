@@ -74,10 +74,13 @@ const Comments = ({ postSlug }: CommentsProps) => {
 
   const handleDelete = async (commentId: string) => {
     if (window.confirm("Are you sure you want to delete this comment?")) {
-      await fetch(`http://localhost:3000/api/comments/${commentId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
+      await fetch(
+        `https://next-bruadarach.vercel.app/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       mutate();
     }
   };

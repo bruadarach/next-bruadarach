@@ -13,7 +13,9 @@ interface CardListProps {
 const getData = async (page: number, cat?: string | undefined) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+      `https://next-bruadarach.vercel.app/api/posts?page=${page}&cat=${
+        cat || ""
+      }`,
       {
         cache: "no-store",
       }

@@ -6,9 +6,12 @@ import { Post } from "../../../prisma/schemaTypes";
 
 const getPopularData = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/posts?popular=true`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://next-bruadarach.vercel.app/api/posts?popular=true`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.error("Fetch error:", res.status, res.statusText);
@@ -24,9 +27,12 @@ const getPopularData = async () => {
 const getSelectedPosts = async (postSlugs: string[]) => {
   try {
     const query = postSlugs.map((slug) => `postSlug=${slug}`).join("&");
-    const res = await fetch(`http://localhost:3000/api/posts?${query}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://next-bruadarach.vercel.app/api/posts?${query}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.error("Fetch error:", res.status, res.statusText);

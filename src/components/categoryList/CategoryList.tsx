@@ -7,9 +7,12 @@ import { Category } from "../../../prisma/schemaTypes";
 
 const getData = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/categories", {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      "https://next-bruadarach.vercel.app/api/categories",
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       console.error("Fetch error:", res.status, res.statusText);
