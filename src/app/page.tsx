@@ -1,5 +1,5 @@
-import Featured from "@/components/featured/Featured";
 import styles from "./page.module.css";
+import Featured from "@/components/featured/Featured";
 import CategoryList from "@/components/categoryList/CategoryList";
 import CardList from "@/components/cardList/CardList";
 import Side from "@/components/side/Side";

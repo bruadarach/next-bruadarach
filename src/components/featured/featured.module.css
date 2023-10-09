@@ -41,21 +41,21 @@
   -webkit-box-orient: vertical;
 }
 
-.button {
+.link {
   font-size: 14px;
   font-weight: 600;
   padding: 16px 20px;
-  border: none;
   border-radius: 5px;
   width: max-content;
   cursor: pointer;
   transition: 0.2s ease;
   font-family: var(--font-openSans);
+  background-color: teal;
+  color: white;
 }
 
-.button:hover {
-  background-color: #a2a2a2;
-  color: white;
+.link:hover {
+  background-color: #008080de;
 }
 
 @media screen and (max-width: 768px) {

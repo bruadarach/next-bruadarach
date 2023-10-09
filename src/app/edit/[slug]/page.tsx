@@ -129,7 +129,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style", //If not selected, choose the general category
+        catSlug: catSlug || "style",
       }),
     });
 
@@ -150,7 +150,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         <button
           className={styles.cancelButton}
           onClick={() => {
-            router.push(`/posts/${params.slug}`);
+            router.back();
           }}
         >
           Cancel
@@ -171,7 +171,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         </select>
         <div className={styles.selectArrow}></div>
       </div>
-
       <input
         type="text"
         value={title}
@@ -180,10 +179,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <div className={styles.editor}>
-        {/* <button className={styles.button} onClick={() => setOpen(!open)}>
-          <Image src="/plus.png" alt="plus" width={20} height={20} priority />
-        </button> */}
-        {/* {open && ( */}
         <div className={styles.add}>
           <input
             type="file"
@@ -221,7 +216,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
             />
           </button>
         </div>
-        {/* )} */}
         <ReactQuill
           theme="snow"
           value={value}

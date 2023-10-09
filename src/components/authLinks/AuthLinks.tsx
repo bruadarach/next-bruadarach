@@ -8,10 +8,15 @@ import { signOut, useSession } from "next-auth/react";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
-
-  // temporary
-  // const status = "unauthenticated";
   const { status } = useSession();
+  const categories = [
+    "style",
+    "fashion",
+    "food",
+    "travel",
+    "culture",
+    "coding",
+  ];
 
   const closeMenu = () => {
     setOpen(false);
@@ -65,24 +70,11 @@ const AuthLinks = () => {
               </>
             )}
             <div className={styles.borderLine}></div>
-            <Link href="/style" onClick={closeMenu}>
-              Style
-            </Link>
-            <Link href="/fashion" onClick={closeMenu}>
-              Fashion
-            </Link>
-            <Link href="/food" onClick={closeMenu}>
-              Food
-            </Link>
-            <Link href="/travel" onClick={closeMenu}>
-              Travel
-            </Link>
-            <Link href="culture/" onClick={closeMenu}>
-              Culture
-            </Link>
-            <Link href="/coding" onClick={closeMenu}>
-              Coding
-            </Link>
+            {categories.map((cat) => (
+              <Link href={`/blog?cat=${cat}`} key={cat} onClick={closeMenu}>
+                {cat}
+              </Link>
+            ))}
           </div>
         </div>
       )}
