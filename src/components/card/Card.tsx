@@ -13,7 +13,6 @@ const Card = ({ post }: { post: Post }) => {
             src={post.img}
             alt="thumbnail"
             fill
-            sizes="100%"
             priority
             className={styles.image}
           />

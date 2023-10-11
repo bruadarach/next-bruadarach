@@ -75,13 +75,12 @@
 }
 
 .articleImageContainer {
-  height: 500px;
   position: relative;
+  width: 100%;
+  min-height: 500px;
 }
 
 .articleImage {
-  object-fit: cover;
-  border-radius: 5px;
 }
 
 .content {
@@ -127,6 +126,10 @@
 
   .date {
     flex-direction: column;
+  }
+
+  .articleImageContainer {
+    min-height: 400px;
   }
 
   .divisor {

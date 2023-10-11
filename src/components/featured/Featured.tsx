@@ -30,15 +30,13 @@ const Featured = async () => {
     <div className="styles.container">
       <div className={styles.post}>
         {post.img && (
-          <div className={styles.imgContainer}>
+          <div className={styles.imageContainer}>
             <Image
               src={post.img}
               alt="featured"
               fill
-              sizes="100%"
               className={styles.image}
               priority
-              style={{ width: "100%", height: "100%" }}
             />
           </div>
         )}
@@ -51,7 +49,7 @@ const Featured = async () => {
             dangerouslySetInnerHTML={{ __html: post.desc }}
           />
           <Link href={`/posts/${post.slug}`} className={styles.link}>
-            Read More ➚
+            Read More
           </Link>
         </div>
       </div>

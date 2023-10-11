@@ -9,14 +9,14 @@
   gap: 50px;
 }
 
-.imgContainer {
+.imageContainer {
   flex: 1;
-  height: 420px;
   position: relative;
+  width: 100%;
+  min-height: 420px;
 }
 
 .image {
-  object-fit: cover;
   border-radius: 5px;
 }
 

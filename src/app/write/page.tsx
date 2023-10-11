@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-// import ReactQuill from "react-quill";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -34,13 +33,13 @@ const Write = () => {
   const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
   const [file, setFile] = useState<FileData | null>(null);
-  const [media, setMedia] = useState<FileData | null>(null);
+  const [media, setMedia] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-  }, [router, status]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/login");
+  //   }
+  // }, [router, status]);
 
   useEffect(() => {
     const storage = getStorage(app);
@@ -152,9 +151,19 @@ const Write = () => {
         placeholder="Title"
         className="title"
         onChange={(e) => setTitle(e.target.value)}
+        accept="image/*"
       />
       <div className={styles.editor}>
-        <div className={styles.add}>
+        <ReactQuill
+          theme="snow"
+          value={value}
+          onChange={setValue}
+          placeholder="Write your story..."
+        />
+      </div>
+      <div className={styles.thumbnail}>
+        <div className={styles.addThumbnail}>
+          <h3>Add Thumbnail ▹ </h3>
           <input
             type="file"
             id="image"
@@ -172,31 +181,21 @@ const Write = () => {
               />
             </label>
           </button>
-          <button className={styles.addButton}>
-            <Image
-              src="/external.png"
-              alt="plus"
-              width={16}
-              height={16}
-              priority
-            />
-          </button>
-          <button className={styles.addButton}>
-            <Image
-              src="/video.png"
-              alt="plus"
-              width={16}
-              height={16}
-              priority
-            />
-          </button>
         </div>
-        <ReactQuill
-          theme="snow"
-          value={value}
-          onChange={setValue}
-          placeholder="Write your story..."
-        />
+        <div className={styles.preview}>
+          {media && (
+            <div className={styles.imageContainer}>
+              <Image
+                src={media}
+                alt="thumbnail"
+                fill
+                sizes="100%"
+                priority
+                className={styles.image}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

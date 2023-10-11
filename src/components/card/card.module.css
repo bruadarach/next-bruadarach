@@ -6,8 +6,9 @@
 
 .imageContainer {
   flex: 1;
-  height: 350px;
   position: relative;
+  width: 100%;
+  min-height: 350px;
 }
 
 .image {

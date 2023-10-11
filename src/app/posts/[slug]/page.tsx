@@ -83,11 +83,9 @@ const singlePage = async ({ params }: singlePageProps) => {
               <Image
                 src={post.img}
                 alt="article"
-                width={400}
-                height={500}
+                fill
                 priority
                 className={styles.articleImage}
-                style={{ width: "100%" }}
               />
             </div>
           )}
