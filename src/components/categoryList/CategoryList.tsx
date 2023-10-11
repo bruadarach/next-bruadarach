@@ -44,6 +44,7 @@ const CategoryList = async () => {
               width={32}
               height={32}
               className={styles.image}
+              priority
             />
             {item.title}
           </Link>

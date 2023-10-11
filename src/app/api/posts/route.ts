@@ -43,7 +43,7 @@ export const GET = async (req: Request) => {
     } else {
       const query: QueryOptions = {
         take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (page - 1), // 페이지 번호에 따라 스킵 수 계산
+        skip: POST_PER_PAGE * (page - 1),
         where: {},
         orderBy: {
           createdAt: "desc",

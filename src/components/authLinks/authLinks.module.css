@@ -40,6 +40,7 @@
   justify-content: center;
   padding: 100px 80px;
   overflow-y: hidden;
+  display: none;
 }
 
 .responsiveMenuWrapper {
@@ -60,17 +61,15 @@
   right: 30px;
 }
 
-@media screen and (min-width: 641px) {
-  .burger,
-  .responsiveMenu {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1024px) {
   .burger {
     display: flex;
   }
+
+  .responsiveMenus {
+    display: flex;
+  }
+
   .link {
     display: none;
   }
