@@ -13,9 +13,9 @@ interface CardListProps {
 const getData = async (page: number, cat?: string | undefined) => {
   try {
     const res = await fetch(
-      `https://next-bruadarach.vercel.app/api/posts?page=${page}&cat=${
+      `https://next-bruadarach.vercel.app/api/posts?cat=${
         cat || ""
-      }`,
+      }&page=${page}`,
       {
         cache: "no-store",
       }
@@ -44,11 +44,15 @@ const CardList = async ({ page, cat }: CardListProps) => {
     <div className={styles.container}>
       <SectionTitle title="Latest Posts" />
       <div className={styles.posts}>
-        {posts.map((post: Post) => (
-          <Card key={post._id} post={post} />
-        ))}
+        {posts?.length ? (
+          posts.map((post: Post) => <Card key={post._id} post={post} />)
+        ) : (
+          <div className={styles.empty}>
+            <p>No published posts available at the moment.</p>
+          </div>
+        )}
       </div>
-      <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} />
+      <Pagination page={page} cat={cat} hasPrev={hasPrev} hasNext={hasNext} />
     </div>
   );
 };

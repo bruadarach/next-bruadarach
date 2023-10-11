@@ -8,27 +8,32 @@ interface PaginationProps {
   page: number;
   hasPrev: boolean;
   hasNext: boolean;
+  cat?: string | undefined;
 }
 
-const Pagination = ({ page, hasPrev, hasNext }: PaginationProps) => {
+const Pagination = ({ page, cat, hasPrev, hasNext }: PaginationProps) => {
   const router = useRouter();
-
-  const goToPage = (newPage: number) => {
-    router.push(`/?page=${newPage}`);
-  };
 
   return (
     <div className={styles.container}>
       <button
         className={styles.button}
-        onClick={() => goToPage(page - 1)}
+        onClick={() =>
+          cat
+            ? router.push(`?cat=${cat}&page=${page - 1}`)
+            : router.push(`?page=${page - 1}`)
+        }
         disabled={!hasPrev}
       >
         ◀ Previous
       </button>
       <button
         className={styles.button}
-        onClick={() => goToPage(page + 1)}
+        onClick={() =>
+          cat
+            ? router.push(`?cat=${cat}&page=${page + 1}`)
+            : router.push(`?page=${page + 1}`)
+        }
         disabled={!hasNext}
       >
         Next ►
