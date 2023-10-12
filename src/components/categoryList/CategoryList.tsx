@@ -34,19 +34,19 @@ const CategoryList = async () => {
       <div className={styles.categories}>
         {data?.map((item: Category) => (
           <Link
-            key={item._id}
-            href={`/blog?cat=${item.slug}`}
-            className={`${styles.category} ${styles[item.slug]}`}
+            key={item?._id}
+            href={`/blog?cat=${item?.slug}`}
+            className={`${styles.category} ${styles[item?.slug]}`}
           >
             <Image
-              src={item.img as string}
-              alt={item.title}
+              src={item?.img as string}
+              alt={item?.title}
               width={32}
               height={32}
               className={styles.image}
               priority
             />
-            {item.title}
+            {item?.title}
           </Link>
         ))}
       </div>

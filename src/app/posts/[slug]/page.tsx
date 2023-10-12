@@ -44,16 +44,16 @@ const singlePage = async ({ params }: singlePageProps) => {
       <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
           <div className={styles.sessionButtons}>
-            <SessionButtons slug={slug} userEmail={post.user?.email} />
+            <SessionButtons slug={slug} userEmail={post?.user?.email} />
           </div>
-          <div className={`${styles.category} ${styles[post.catSlug]}`}>
-            {post.catSlug}
+          <div className={`${styles.category} ${styles[post?.catSlug]}`}>
+            {post?.catSlug}
           </div>
-          <h1>{post.title}</h1>
+          <h1>{post?.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
               <Image
-                src={post.user?.image ? post.user?.image : "/user.png"}
+                src={post?.user?.image ? post?.user?.image : "/user.png"}
                 alt="user"
                 width={42}
                 height={42}
@@ -61,16 +61,16 @@ const singlePage = async ({ params }: singlePageProps) => {
                 className={styles.userImage}
               />
             </div>
-            <div className={styles.userName}>{post.user?.name}</div>
+            <div className={styles.userName}>{post?.user?.name}</div>
           </div>
           <div className={styles.date}>
             <div className={styles.publishedDate}>
-              Published: {new Date(post.createdAt).toLocaleString()}
+              Published: {new Date(post?.createdAt).toLocaleString()}
             </div>
             <div className={styles.divisor}>|</div>
-            {post.updatedAt && (
+            {post?.updatedAt && (
               <div className={styles.updatedDate}>
-                Updated: {new Date(post.updatedAt).toLocaleString()}
+                Updated: {new Date(post?.updatedAt).toLocaleString()}
               </div>
             )}
           </div>
@@ -81,7 +81,7 @@ const singlePage = async ({ params }: singlePageProps) => {
           {post?.img && (
             <div className={styles.articleImageContainer}>
               <Image
-                src={post.img}
+                src={post?.img}
                 alt="article"
                 fill
                 priority
@@ -90,7 +90,7 @@ const singlePage = async ({ params }: singlePageProps) => {
             </div>
           )}
           <div className={styles.desc}>
-            <p dangerouslySetInnerHTML={{ __html: post.desc }} />
+            <p dangerouslySetInnerHTML={{ __html: post?.desc }} />
           </div>
           <div className={styles.comments}>
             <Comments postSlug={slug} />

@@ -29,10 +29,10 @@ const Featured = async () => {
   return (
     <div className="styles.container">
       <div className={styles.post}>
-        {post.img && (
+        {post?.img && (
           <div className={styles.imageContainer}>
             <Image
-              src={post.img}
+              src={post?.img}
               alt="featured"
               fill
               className={styles.image}
@@ -41,14 +41,14 @@ const Featured = async () => {
           </div>
         )}
         <div className={styles.textContainer}>
-          <Link href={`/posts/${post.slug}`}>
-            <h2 className={styles.postTitle}>{post.title}</h2>
+          <Link href={`/posts/${post?.slug}`}>
+            <h2 className={styles.postTitle}>{post?.title}</h2>
           </Link>
           <p
             className={styles.postDesc}
-            dangerouslySetInnerHTML={{ __html: post.desc }}
+            dangerouslySetInnerHTML={{ __html: post?.desc }}
           />
-          <Link href={`/posts/${post.slug}`} className={styles.link}>
+          <Link href={`/posts/${post?.slug}`} className={styles.link}>
             Read More
           </Link>
         </div>
