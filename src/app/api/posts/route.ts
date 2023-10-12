@@ -25,51 +25,54 @@ export const GET = async (req: Request) => {
   const POST_PER_PAGE = 4;
 
   try {
-    const query: QueryOptions = {
-      take: POST_PER_PAGE,
-      skip: POST_PER_PAGE * (page - 1),
-      where: {},
-      orderBy: {
-        createdAt: "desc",
-      },
-    };
-
-    if (cat) {
-      query.where.catSlug = cat;
-    }
-
-    let posts = await prisma.post.findMany({
-      ...query,
-      include: { user: true },
-    });
-
     if (popular === "true") {
-      query.orderBy = {
-        views: "desc",
-      };
-    }
-
-    if (featured === "true") {
+      const popularPost = await prisma.post.findMany({
+        orderBy: {
+          views: "desc",
+        },
+        take: 4,
+      });
+      return new NextResponse(JSON.stringify(popularPost), { status: 200 });
+    } else if (featured === "true") {
       const featuredPost = await prisma.post.findMany({
         where: {
           featured: true,
         },
       });
       return new NextResponse(JSON.stringify(featuredPost), { status: 200 });
-    }
-
-    if (selected === "true") {
+    } else if (selected === "true") {
       const selectedPost = await prisma.post.findMany({
         where: {
           selected: true,
         },
+        take: 4,
       });
       return new NextResponse(JSON.stringify(selectedPost), { status: 200 });
+    } else {
+      const query: QueryOptions = {
+        take: POST_PER_PAGE,
+        skip: POST_PER_PAGE * (page - 1),
+        where: {},
+        orderBy: {
+          createdAt: "desc",
+        },
+      };
+
+      if (cat) {
+        query.where.catSlug = cat;
+      }
+
+      const posts = await prisma.post.findMany({
+        ...query,
+        include: { user: true },
+      });
+
+      const count = await prisma.post.count();
+
+      return new NextResponse(JSON.stringify({ posts, count }), {
+        status: 200,
+      });
     }
-
-    const count = await prisma.post.count();
-
-    return new NextResponse(JSON.stringify({ posts, count }), { status: 200 });
   } catch (error) {
     console.log(error);
     const errorMessage = JSON.stringify({ message: "Something went wrong" });
