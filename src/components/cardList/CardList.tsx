@@ -45,7 +45,7 @@ const CardList = async ({ page, cat }: CardListProps) => {
       <SectionTitle title="Latest Posts" />
       <div className={styles.posts}>
         {posts?.length ? (
-          posts.map((post: Post) => <Card key={post._id} post={post} />)
+          posts.map((post: Post) => <Card key={post.slug} post={post} />)
         ) : (
           <div className={styles.empty}>
             <p>No published posts available at the moment.</p>

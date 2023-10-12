@@ -2,6 +2,7 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
 
+// GET POSTS
 interface QueryOptions {
   take: number;
   skip: number;
@@ -12,6 +13,29 @@ interface QueryOptions {
     createdAt?: "asc" | "desc";
     views?: "asc" | "desc";
   };
+}
+
+async function getFeaturedPosts() {
+  return prisma.post.findMany({
+    where: { featured: true },
+    include: { user: true },
+  });
+}
+
+async function getPopularPosts() {
+  return prisma.post.findMany({
+    orderBy: { views: "desc" },
+    take: 4,
+    include: { user: true },
+  });
+}
+
+async function getSelectedPosts() {
+  return prisma.post.findMany({
+    where: { selected: true },
+    take: 4,
+    include: { user: true },
+  });
 }
 
 export const GET = async (req: Request) => {
@@ -26,27 +50,13 @@ export const GET = async (req: Request) => {
 
   try {
     if (popular === "true") {
-      const popularPost = await prisma.post.findMany({
-        orderBy: {
-          views: "desc",
-        },
-        take: 4,
-      });
+      const popularPost = await getPopularPosts();
       return new NextResponse(JSON.stringify(popularPost), { status: 200 });
     } else if (featured === "true") {
-      const featuredPost = await prisma.post.findMany({
-        where: {
-          featured: true,
-        },
-      });
+      const featuredPost = await getFeaturedPosts();
       return new NextResponse(JSON.stringify(featuredPost), { status: 200 });
     } else if (selected === "true") {
-      const selectedPost = await prisma.post.findMany({
-        where: {
-          selected: true,
-        },
-        take: 4,
-      });
+      const selectedPost = await getSelectedPosts();
       return new NextResponse(JSON.stringify(selectedPost), { status: 200 });
     } else {
       const query: QueryOptions = {

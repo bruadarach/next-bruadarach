@@ -67,8 +67,8 @@ const getCategories = async () => {
 };
 
 const Side = async () => {
-  const { posts: popularPosts } = await getPopularData();
-  const { posts: selectedPosts } = await getSelectedPosts();
+  const popularPosts = await getPopularData();
+  const selectedPosts = await getSelectedPosts();
   const categories = await getCategories();
 
   return (
@@ -84,7 +84,7 @@ const Side = async () => {
         <SectionTitle title={"Editor's Picks"} />
         {selectedPosts &&
           selectedPosts.map((post: Post) => (
-            <SidePost post={post} key={post._id} />
+            <SidePost post={post} key={post.slug} />
           ))}
       </div>
       <div>
@@ -92,7 +92,7 @@ const Side = async () => {
         <div className={styles.categories}>
           {categories &&
             categories.map((category: Category) => (
-              <Link href={`/blog?cat=${category.slug}`} key={category._id}>
+              <Link href={`/blog?cat=${category.slug}`} key={category.slug}>
                 <div className={`${styles.category} ${styles[category.slug]}`}>
                   {category.title}
                 </div>
