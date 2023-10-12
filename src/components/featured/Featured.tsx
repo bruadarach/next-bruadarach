@@ -24,7 +24,7 @@ const getData = async (slug: string) => {
 };
 
 const Featured = async () => {
-  const post = await getData("remove-cache");
+  const post = await getData("new");
 
   return (
     <div className="styles.container">
