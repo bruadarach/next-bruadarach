@@ -44,10 +44,12 @@ const Featured = async () => {
           <Link href={`/posts/${post?.slug}`}>
             <h2 className={styles.postTitle}>{post?.title}</h2>
           </Link>
-          <p
-            className={styles.postDesc}
-            dangerouslySetInnerHTML={{ __html: post?.desc }}
-          />
+          {post?.desc && (
+            <p
+              className={styles.postDesc}
+              dangerouslySetInnerHTML={{ __html: post?.desc }}
+            />
+          )}
           <Link href={`/posts/${post?.slug}`} className={styles.link}>
             Read More
           </Link>
