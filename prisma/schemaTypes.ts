@@ -63,6 +63,8 @@ export interface Post {
   userEmail: string;
   user: User;
   comments: Comment[];
+  featured: boolean;
+  selected: boolean;
 }
 
 export interface CommentProps {

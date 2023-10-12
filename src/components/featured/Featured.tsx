@@ -3,10 +3,10 @@ import styles from "./featured.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-const getData = async (slug: string) => {
+const getData = async () => {
   try {
     const res = await fetch(
-      `https://next-bruadarach.vercel.app/api/posts/${slug}`,
+      `https://next-bruadarach.vercel.app/api/posts?featured=true`,
       {
         cache: "no-store",
       }
@@ -24,7 +24,7 @@ const getData = async (slug: string) => {
 };
 
 const Featured = async () => {
-  const post = await getData("new");
+  const post = await getData();
 
   return (
     <div className="styles.container">

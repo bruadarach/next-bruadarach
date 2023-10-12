@@ -76,6 +76,8 @@ model Post {
   userEmail String
   user      User      @relation(fields: [userEmail], references: [email])
   comments  Comment[]
+  featured Boolean @default(false)
+  selected Boolean @default(false)
 }
 
 model Comment {

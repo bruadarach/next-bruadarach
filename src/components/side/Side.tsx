@@ -26,11 +26,10 @@ const getPopularData = async () => {
   }
 };
 
-const getSelectedPosts = async (postSlugs: string[]) => {
+const getSelectedPosts = async () => {
   try {
-    const query = postSlugs.map((slug) => `postSlug=${slug}`).join("&");
     const res = await fetch(
-      `https://next-bruadarach.vercel.app/api/posts?${query}`,
+      `https://next-bruadarach.vercel.app/api/posts?selected=true`,
       {
         cache: "no-store",
       }
@@ -69,8 +68,7 @@ const getCategories = async () => {
 
 const Side = async () => {
   const { posts: popularPosts } = await getPopularData();
-  const postSlugs = ["lets-write-one-more-time", "not-too-long-limit"];
-  const { posts: selectedPosts } = await getSelectedPosts(postSlugs);
+  const { posts: selectedPosts } = await getSelectedPosts();
   const categories = await getCategories();
 
   return (

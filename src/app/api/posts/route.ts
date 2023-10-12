@@ -7,9 +7,6 @@ interface QueryOptions {
   skip: number;
   where: {
     catSlug?: string;
-    slug?: {
-      in: string[];
-    };
   };
   orderBy: {
     createdAt?: "asc" | "desc";
@@ -21,49 +18,53 @@ export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page") || "1");
   const cat = searchParams.get("cat");
+  const featured = searchParams.get("featured");
   const popular = searchParams.get("popular");
-  const postSlugs = searchParams.getAll("postSlug");
+  const selected = searchParams.get("selected");
 
   const POST_PER_PAGE = 4;
 
   try {
-    let posts;
-    if (postSlugs.length > 0) {
-      posts = await prisma.post.findMany({
-        where: {
-          slug: {
-            in: postSlugs,
-          },
-        },
-        include: { user: true },
-      });
-      posts.sort((a, b) => {
-        return postSlugs.indexOf(a.slug) - postSlugs.indexOf(b.slug);
-      });
-    } else {
-      const query: QueryOptions = {
-        take: POST_PER_PAGE,
-        skip: POST_PER_PAGE * (page - 1),
-        where: {},
-        orderBy: {
-          createdAt: "desc",
-        },
+    const query: QueryOptions = {
+      take: POST_PER_PAGE,
+      skip: POST_PER_PAGE * (page - 1),
+      where: {},
+      orderBy: {
+        createdAt: "desc",
+      },
+    };
+
+    if (cat) {
+      query.where.catSlug = cat;
+    }
+
+    let posts = await prisma.post.findMany({
+      ...query,
+      include: { user: true },
+    });
+
+    if (popular === "true") {
+      query.orderBy = {
+        views: "desc",
       };
+    }
 
-      if (cat) {
-        query.where.catSlug = cat;
-      }
-
-      if (popular === "true") {
-        query.orderBy = {
-          views: "desc",
-        };
-      }
-
-      posts = await prisma.post.findMany({
-        ...query,
-        include: { user: true },
+    if (featured === "true") {
+      const featuredPost = await prisma.post.findMany({
+        where: {
+          featured: true,
+        },
       });
+      return new NextResponse(JSON.stringify(featuredPost), { status: 200 });
+    }
+
+    if (selected === "true") {
+      const selectedPost = await prisma.post.findMany({
+        where: {
+          selected: true,
+        },
+      });
+      return new NextResponse(JSON.stringify(selectedPost), { status: 200 });
     }
 
     const count = await prisma.post.count();
