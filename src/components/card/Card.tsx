@@ -20,10 +20,12 @@ const Card = ({ post }: { post: Post }) => {
       )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>
-            {new Date(post.createdAt).toLocaleDateString()} -{" "}
+          <span className={`${styles.category} ${styles[post.catSlug]}`}>
+            {post.catSlug}
           </span>
-          <span className={styles.category}>{post.catSlug}</span>
+          <span className={styles.date}>
+            {new Date(post.createdAt).toLocaleDateString()}
+          </span>
         </div>
         <Link href={`/posts/${post.slug}`}>
           <h1>{post.title}</h1>
