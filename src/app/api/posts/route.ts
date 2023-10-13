@@ -72,12 +72,15 @@ export const GET = async (req: Request) => {
         query.where.catSlug = cat;
       }
 
-      const posts = await prisma.post.findMany({
-        ...query,
-        include: { user: true },
-      });
-
-      const count = await prisma.post.count();
+      const [posts, count] = await prisma.$transaction([
+        prisma.post.findMany({
+          ...query,
+          include: { user: true },
+        }),
+        prisma.post.count({
+          where: query.where,
+        }),
+      ]);
 
       return new NextResponse(JSON.stringify({ posts, count }), {
         status: 200,
