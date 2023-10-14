@@ -7,14 +7,15 @@ import { Post } from "../../../prisma/schemaTypes";
 const Card = ({ post }: { post: Post }) => {
   return (
     <div className={styles.container}>
-      {post.img && (
+      {post?.img && (
         <div className={styles.imageContainer}>
           <Image
-            src={post.img}
-            alt="thumbnail"
+            src={post?.img}
+            alt="featured"
             fill
-            priority
+            sizes="100%"
             className={styles.image}
+            priority
           />
         </div>
       )}
@@ -28,7 +29,7 @@ const Card = ({ post }: { post: Post }) => {
           </span>
         </div>
         <Link href={`/posts/${post.slug}`}>
-          <h1>{post.title}</h1>
+          <h1 className={styles.title}>{post.title}</h1>
         </Link>
         <p
           className={styles.desc}

@@ -1,13 +1,9 @@
-.title {
-  font-size: 28px;
-}
-
 .items {
   margin-top: 35px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 10px;
 }
 
 .item {
@@ -19,14 +15,14 @@
 .imageContainer {
   flex: 1;
   position: relative;
-  /* aspect-ratio: 1/1; */
-  min-width: 90px;
-  min-height: 90px;
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .image {
   border: 3px solid lightgray;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .textContainer {

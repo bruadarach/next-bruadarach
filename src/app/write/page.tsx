@@ -109,7 +109,7 @@ const Write = () => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style",
+        catSlug: catSlug || "life",
       }),
     });
 

@@ -1,15 +1,13 @@
 .container {
   flex: 5;
-}
-
-.title {
-  margin: 50px 0px;
+  width: 100%;
 }
 
 .posts {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .empty {

@@ -37,6 +37,7 @@ const Featured = async () => {
                 src={post?.img}
                 alt="featured"
                 fill
+                sizes="100%"
                 className={styles.image}
                 priority
               />
