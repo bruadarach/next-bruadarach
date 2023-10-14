@@ -1,5 +1,5 @@
 .container {
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .textContainer {
@@ -16,30 +16,31 @@
   font-weight: 500;
   font-size: 18px;
   color: white;
+  font-family: var(--font-roboto);
 }
 
-.travel {
-  background-color: #ff7857;
+.category.news {
+  background-color: #ff5757;
 }
 
-.culture {
+.category.event {
   background-color: #ffb14f;
 }
 
-.food {
+.category.travel {
   background-color: #7fb881;
 }
 
-.fashion {
-  background-color: #ff7887;
-}
-
-.coding {
-  background-color: #775aec;
-}
-
-.style {
+.category.life {
   background-color: #789cff;
+}
+
+.category.culture {
+  background-color: #ff8e9f;
+}
+
+.category.food {
+  background-color: #775aec;
 }
 
 .textContainer h1 {
@@ -78,9 +79,6 @@
   position: relative;
   width: 100%;
   min-height: 500px;
-}
-
-.articleImage {
 }
 
 .content {

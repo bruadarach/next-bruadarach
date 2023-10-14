@@ -37,7 +37,7 @@
   flex: 4;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .category {
@@ -46,44 +46,42 @@
   font-size: 12px;
   color: white;
   width: max-content;
-}
-
-.category.culture {
-  background-color: #ff795736;
-}
-
-.category.travel {
-  background-color: #ffb04f45;
-}
-
-.category.food {
-  background-color: #7fb88133;
+  font-family: var(--font-roboto);
 }
 
 .category.news {
-  background-color: #57c4ff31;
+  background-color: #ff5757;
 }
 
 .category.event {
-  background-color: #da85c731;
+  background-color: #ffb14f;
+}
+
+.category.travel {
+  background-color: #7fb881;
 }
 
 .category.life {
-  background-color: #5e4fff31;
+  background-color: #789cff;
+}
+
+.category.culture {
+  background-color: #ff8e9f;
+}
+
+.category.food {
+  background-color: #775aec;
 }
 
 .postTitle {
   font-size: 18px;
   font-weight: 500;
-  color: var(--softTextColor);
+  color: var(--textColor);
 }
 
 .detail {
   font-size: 12px;
-}
-
-.date {
-  color: gray;
+  color: var(--softTextColor);
 }
 
 @media screen and (max-width: 1550px) {

@@ -26,10 +26,7 @@ const SidePost = ({ post }: { post: Post }) => {
           </span>
           <h3 className={styles.postTitle}>{post?.title}</h3>
           <div className={styles.detail}>
-            <span className={styles.username}>{post?.user?.name}</span>
-            <span className={styles.date}>
-              - {new Date(post?.createdAt).toLocaleDateString()}
-            </span>
+            <span className={styles.username}>By. {post?.user?.name}</span>
           </div>
         </div>
       </Link>
