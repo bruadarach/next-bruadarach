@@ -5,31 +5,12 @@ import styles from "./authLinks.module.css";
 import Link from "next/link";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { signOut, useSession } from "next-auth/react";
-
-const getData = async () => {
-  try {
-    const res = await fetch(
-      "https://next-bruadarach.vercel.app/api/categories",
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!res.ok) {
-      console.error("Fetch error:", res.status, res.statusText);
-      throw new Error("Failed");
-    }
-    return res.json();
-  } catch (error) {
-    console.error("getData error:", error);
-    throw error;
-  }
-};
+import { Category } from "../../../prisma/schemaTypes";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
   const { status } = useSession();
-  const [categories, setCategories] = useState<string[] | null>(null);
+  const [categories, setCategories] = useState<Category[] | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -103,9 +84,13 @@ const AuthLinks = () => {
               </>
             )}
             <div className={styles.borderLine}></div>
-            {categories?.map((cat: string) => (
-              <Link href={`/blog?cat=${cat}`} key={cat} onClick={closeMenu}>
-                {cat}
+            {categories?.map((cat: Category) => (
+              <Link
+                href={`/blog?cat=${cat}`}
+                key={cat.slug}
+                onClick={closeMenu}
+              >
+                {cat.slug}
               </Link>
             ))}
           </div>
