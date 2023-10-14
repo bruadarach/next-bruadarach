@@ -14,6 +14,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
+import Loading from "@/components/loading/Loading";
 
 interface FileData {
   lastModified: number;
@@ -43,13 +44,24 @@ const getData = async (slug: string) => {
 };
 
 const Edit = ({ params }: { params: { slug: string } }) => {
-  const { status } = useSession();
+  const { status, data: sessionData } = useSession();
   const router = useRouter();
   const [catSlug, setCatSlug] = useState("");
   const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
   const [file, setFile] = useState<FileData | null>(null);
-  const [media, setMedia] = useState<FileData | null>(null);
+  const [media, setMedia] = useState<string | null>(null);
+  const [user, setUser] = useState<null | string>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    } else if (sessionData?.user?.email !== user) {
+      alert("You are not the author of this post");
+      router.push("/");
+    }
+  }, [router, status, sessionData, user]);
 
   useEffect(() => {
     const { slug } = params;
@@ -59,17 +71,13 @@ const Edit = ({ params }: { params: { slug: string } }) => {
       setValue(post.desc);
       setCatSlug(post.catSlug);
       setMedia(post.img);
+      setUser(post.user.email);
     };
     getPost();
   }, [params]);
 
   useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-  }, [router, status]);
-
-  useEffect(() => {
+    setLoading(true);
     const storage = getStorage(app);
     const upload = () => {
       const uniqueName = new Date().getTime() + "-" + file?.name;
@@ -93,10 +101,12 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         },
         (error) => {
           console.log(error);
+          setLoading(false);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setMedia(downloadURL as any);
+            setLoading(false);
           });
         }
       );
@@ -105,7 +115,11 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   }, [file]);
 
   if (status === "loading") {
-    return <div className={styles.loading}>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -165,12 +179,12 @@ const Edit = ({ params }: { params: { slug: string } }) => {
           className={styles.select}
           onChange={(e) => setCatSlug(e.target.value)}
         >
-          <option value="style">style</option>
-          <option value="fashion">fashion</option>
-          <option value="food">food</option>
-          <option value="culture">culture</option>
+          <option value="news">news</option>
+          <option value="event">event</option>
           <option value="travel">travel</option>
-          <option value="coding">coding</option>
+          <option value="life">life</option>
+          <option value="culture">culture</option>
+          <option value="food">food</option>
         </select>
         <div className={styles.selectArrow}></div>
       </div>
@@ -182,12 +196,22 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <div className={styles.editor}>
-        <div className={styles.add}>
+        <ReactQuill
+          theme="snow"
+          value={value}
+          onChange={setValue}
+          placeholder="Write your story..."
+        />
+      </div>
+      <div className={styles.thumbnail}>
+        <div className={styles.addThumbnail}>
+          <h3>Add Thumbnail ▹ </h3>
           <input
             type="file"
             id="image"
             onChange={(e) => handleChange(e)}
             style={{ display: "none" }}
+            accept="image/*"
           />
           <button className={styles.addButton}>
             <label htmlFor="image">
@@ -200,31 +224,25 @@ const Edit = ({ params }: { params: { slug: string } }) => {
               />
             </label>
           </button>
-          <button className={styles.addButton}>
-            <Image
-              src="/external.png"
-              alt="plus"
-              width={16}
-              height={16}
-              priority
-            />
-          </button>
-          <button className={styles.addButton}>
-            <Image
-              src="/video.png"
-              alt="plus"
-              width={16}
-              height={16}
-              priority
-            />
-          </button>
         </div>
-        <ReactQuill
-          theme="snow"
-          value={value}
-          onChange={setValue}
-          placeholder="Write your story..."
-        />
+        <div className={styles.preview}>
+          {loading ? (
+            <Loading />
+          ) : (
+            media && (
+              <div className={styles.imageContainer}>
+                <Image
+                  src={media}
+                  alt="thumbnail"
+                  fill
+                  sizes="100%"
+                  priority
+                  className={styles.image}
+                />
+              </div>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

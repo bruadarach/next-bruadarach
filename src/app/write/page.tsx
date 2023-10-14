@@ -17,6 +17,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
+import Loading from "@/components/loading/Loading";
 
 interface FileData {
   lastModified: number;
@@ -34,14 +35,16 @@ const Write = () => {
   const [value, setValue] = useState("");
   const [file, setFile] = useState<FileData | null>(null);
   const [media, setMedia] = useState<string | null>(null);
-
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     router.push("/login");
-  //   }
-  // }, [router, status]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [router, status]);
+
+  useEffect(() => {
+    setLoading(true);
     const storage = getStorage(app);
     const upload = () => {
       const uniqueName = new Date().getTime() + "-" + file?.name;
@@ -65,10 +68,12 @@ const Write = () => {
         },
         (error) => {
           console.log(error);
+          setLoading(false);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setMedia(downloadURL as any);
+            setLoading(false);
           });
         }
       );
@@ -137,12 +142,12 @@ const Write = () => {
           className={styles.select}
           onChange={(e) => setCatSlug(e.target.value)}
         >
-          <option value="style">style</option>
-          <option value="fashion">fashion</option>
-          <option value="food">food</option>
-          <option value="culture">culture</option>
+          <option value="news">news</option>
+          <option value="event">event</option>
           <option value="travel">travel</option>
-          <option value="coding">coding</option>
+          <option value="life">life</option>
+          <option value="culture">culture</option>
+          <option value="food">food</option>
         </select>
         <div className={styles.selectArrow}></div>
       </div>
@@ -151,7 +156,6 @@ const Write = () => {
         placeholder="Title"
         className="title"
         onChange={(e) => setTitle(e.target.value)}
-        accept="image/*"
       />
       <div className={styles.editor}>
         <ReactQuill
@@ -169,6 +173,7 @@ const Write = () => {
             id="image"
             onChange={(e) => handleChange(e)}
             style={{ display: "none" }}
+            accept="image/*"
           />
           <button className={styles.addButton}>
             <label htmlFor="image">
@@ -183,17 +188,21 @@ const Write = () => {
           </button>
         </div>
         <div className={styles.preview}>
-          {media && (
-            <div className={styles.imageContainer}>
-              <Image
-                src={media}
-                alt="thumbnail"
-                fill
-                sizes="100%"
-                priority
-                className={styles.image}
-              />
-            </div>
+          {loading ? (
+            <Loading />
+          ) : (
+            media && (
+              <div className={styles.imageContainer}>
+                <Image
+                  src={media}
+                  alt="thumbnail"
+                  fill
+                  sizes="100%"
+                  priority
+                  className={styles.image}
+                />
+              </div>
+            )
           )}
         </div>
       </div>
