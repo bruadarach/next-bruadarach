@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionTitle from "../sectionTitle/SectionTitle";
 import { Category } from "../../../prisma/schemaTypes";
+import { BsFillHouseFill } from "react-icons/bs";
+import { FaPassport } from "react-icons/fa";
 
 const getData = async () => {
   try {
@@ -30,7 +32,6 @@ const CategoryList = async () => {
 
   return (
     <div className={styles.container}>
-      <SectionTitle title="Categories" />
       <div className={styles.categories}>
         {data?.map((item: Category) => (
           <Link
@@ -38,14 +39,6 @@ const CategoryList = async () => {
             href={`/blog?cat=${item?.slug}`}
             className={`${styles.category} ${styles[item?.slug]}`}
           >
-            <Image
-              src={item?.img as string}
-              alt={item?.title}
-              width={32}
-              height={32}
-              className={styles.image}
-              priority
-            />
             {item?.title}
           </Link>
         ))}
