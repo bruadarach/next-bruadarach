@@ -86,7 +86,7 @@ const AuthLinks = () => {
             <div className={styles.borderLine}></div>
             {categories?.map((cat: Category) => (
               <Link
-                href={`/blog?cat=${cat}`}
+                href={`/blog?cat=${cat.slug}`}
                 key={cat.slug}
                 onClick={closeMenu}
               >
