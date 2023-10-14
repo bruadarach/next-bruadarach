@@ -54,14 +54,20 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   const [user, setUser] = useState<null | string>(null);
   const [loading, setLoading] = useState(false);
 
+  console.log(user, "user");
+  console.log(sessionData?.user?.email, "sessionData?.user?.email");
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
-    } else if (sessionData?.user?.email !== user) {
-      alert("You are not the author of this post");
-      router.push("/");
     }
+    // else if (sessionData?.user?.email !== user) {
+    //   alert("You are not the author of this post");
+    //   router.push("/");
+    // }
   }, [router, status, sessionData, user]);
+
+  console.log(user, "user");
 
   useEffect(() => {
     const { slug } = params;
