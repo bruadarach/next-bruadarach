@@ -188,21 +188,17 @@ const Write = () => {
           </button>
         </div>
         <div className={styles.preview}>
-          {loading ? (
-            <Loading />
-          ) : (
-            media && (
-              <div className={styles.imageContainer}>
-                <Image
-                  src={media}
-                  alt="thumbnail"
-                  fill
-                  sizes="100%"
-                  priority
-                  className={styles.image}
-                />
-              </div>
-            )
+          {media && (
+            <div className={styles.imageContainer}>
+              <Image
+                src={media}
+                alt="thumbnail"
+                fill
+                sizes="100%"
+                priority
+                className={styles.image}
+              />
+            </div>
           )}
         </div>
       </div>
