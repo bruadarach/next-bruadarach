@@ -6,6 +6,7 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "scontent-gmp1-1.xx.fbcdn.net",
       "firebasestorage.googleapis.com",
+      "platform-lookaside.fbsbx.com",
     ],
   },
 };
