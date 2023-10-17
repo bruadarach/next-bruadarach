@@ -51,33 +51,34 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   const [value, setValue] = useState("");
   const [file, setFile] = useState<FileData | null>(null);
   const [media, setMedia] = useState<string | null>(null);
-  const [user, setUser] = useState<null | string>(null);
   const [loading, setLoading] = useState(false);
-  console.log(user, "user");
-  console.log(sessionData?.user?.email, "sessionData?.user?.email");
 
   useEffect(() => {
-    const { slug } = params;
-    const getPost = async () => {
+    const checkSession = async () => {
+      const { slug } = params;
       const post = await getData(slug);
-      console.log(post, "post");
       setTitle(post.title);
       setValue(post.desc);
       setCatSlug(post.catSlug);
       setMedia(post.img);
-      setUser(post.user.email);
+
+      if (status === "unauthenticated") {
+        await router.push("/login");
+      }
+
+      if (sessionData?.user?.email !== post.user.email) {
+        alert("You are not the author of this post");
+        await router.push("/");
+      }
     };
-    getPost();
-  }, [params]);
 
-  if (status === "unauthenticated") {
-    router.push("/login");
-  }
+    if (status === "loading") {
+      // 세션 데이터가 아직 로드되지 않았을 때 기다림
+      return;
+    }
 
-  if (sessionData?.user?.email !== user) {
-    alert("You are not the author of this post");
-    router.push("/");
-  }
+    checkSession();
+  }, [params, status, sessionData, router]);
 
   useEffect(() => {
     setLoading(true);
