@@ -53,11 +53,14 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   const [media, setMedia] = useState<string | null>(null);
   const [user, setUser] = useState<null | string>(null);
   const [loading, setLoading] = useState(false);
+  console.log(user, "user");
+  console.log(sessionData?.user?.email, "sessionData?.user?.email");
 
   useEffect(() => {
     const { slug } = params;
     const getPost = async () => {
       const post = await getData(slug);
+      console.log(post, "post");
       setTitle(post.title);
       setValue(post.desc);
       setCatSlug(post.catSlug);
@@ -67,16 +70,14 @@ const Edit = ({ params }: { params: { slug: string } }) => {
     getPost();
   }, [params]);
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
+  if (status === "unauthenticated") {
+    router.push("/login");
+  }
 
-    if (sessionData?.user?.email !== user) {
-      alert("You are not the author of this post");
-      router.push("/");
-    }
-  }, [router, status, sessionData, user]);
+  if (sessionData?.user?.email !== user) {
+    alert("You are not the author of this post");
+    router.push("/");
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -123,9 +124,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
       </div>
     );
   }
-
-  console.log(user, "user");
-  console.log(sessionData?.user?.email, "sessionData?.user?.email");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
