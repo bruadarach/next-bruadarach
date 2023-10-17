@@ -85,41 +85,43 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   }, [params, status, sessionData, router]);
 
   useEffect(() => {
-    setLoading(true);
-    const storage = getStorage(app);
-    const upload = () => {
-      const uniqueName = new Date().getTime() + "-" + file?.name;
-      const storageRef = ref(storage, uniqueName);
-      const uploadTask = uploadBytesResumable(storageRef, file as File);
+    if (file) {
+      setLoading(true);
+      const storage = getStorage(app);
+      const upload = () => {
+        const uniqueName = new Date().getTime() + "-" + file?.name;
+        const storageRef = ref(storage, uniqueName);
+        const uploadTask = uploadBytesResumable(storageRef, file as File);
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
-        },
-        (error) => {
-          console.log(error);
-          setLoading(false);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setMedia(downloadURL as any);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+            }
+          },
+          (error) => {
+            console.log(error);
             setLoading(false);
-          });
-        }
-      );
-    };
-    file && upload();
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              setMedia(downloadURL as any);
+              setLoading(false);
+            });
+          }
+        );
+      };
+      file && upload();
+    }
   }, [file]);
 
   if (status === "loading") {
@@ -233,20 +235,24 @@ const Edit = ({ params }: { params: { slug: string } }) => {
             </label>
           </button>
         </div>
-        <div className={styles.preview}>
-          {media && (
-            <div className={styles.imageContainer}>
-              <Image
-                src={media}
-                alt="thumbnail"
-                fill
-                sizes="100%"
-                priority
-                className={styles.image}
-              />
-            </div>
-          )}
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className={styles.preview}>
+            {media && (
+              <div className={styles.imageContainer}>
+                <Image
+                  src={media}
+                  alt="thumbnail"
+                  fill
+                  sizes="100%"
+                  priority
+                  className={styles.image}
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
