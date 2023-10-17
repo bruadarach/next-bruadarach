@@ -164,7 +164,8 @@ const Edit = ({ params }: { params: { slug: string } }) => {
 
     try {
       const data = await res.json();
-      revalidatePath(`/posts/${data.slug}`); // 해당 경로 무효화
+      // revalidatePath(`/posts/${data.slug}`); // 해당 경로 무효화
+      revalidatePath("/posts/[slug]", "page");
       router.push(`/posts/${data.slug}`);
     } catch (error) {
       console.log(error);
