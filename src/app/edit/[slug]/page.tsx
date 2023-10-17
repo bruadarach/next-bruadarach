@@ -54,21 +54,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
   const [user, setUser] = useState<null | string>(null);
   const [loading, setLoading] = useState(false);
 
-  console.log(user, "user");
-  console.log(sessionData?.user?.email, "sessionData?.user?.email");
-
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-    // else if (sessionData?.user?.email !== user) {
-    //   alert("You are not the author of this post");
-    //   router.push("/");
-    // }
-  }, [router, status, sessionData, user]);
-
-  console.log(user, "user");
-
   useEffect(() => {
     const { slug } = params;
     const getPost = async () => {
@@ -81,6 +66,17 @@ const Edit = ({ params }: { params: { slug: string } }) => {
     };
     getPost();
   }, [params]);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+
+    if (sessionData?.user?.email !== user) {
+      alert("You are not the author of this post");
+      router.push("/");
+    }
+  }, [router, status, sessionData, user]);
 
   useEffect(() => {
     setLoading(true);
@@ -127,6 +123,9 @@ const Edit = ({ params }: { params: { slug: string } }) => {
       </div>
     );
   }
+
+  console.log(user, "user");
+  console.log(sessionData?.user?.email, "sessionData?.user?.email");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {

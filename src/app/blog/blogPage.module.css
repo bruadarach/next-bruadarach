@@ -1,3 +1,7 @@
+.banner {
+  margin: 60px 0 30px 0;
+}
+
 .sectionTitle {
   display: flex;
   justify-content: center;
@@ -36,10 +40,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .imageContainer {
-    height: 200px;
-  }
-
   .sectionTitle h1 {
     font-size: 80px;
   }

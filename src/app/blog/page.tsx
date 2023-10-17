@@ -17,17 +17,19 @@ const BlogPage = ({ searchParams }: Props) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.sectionTitle}>
-        <h1>{cat}</h1>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/blog.png"
-            alt="thumbnail"
-            fill
-            sizes="100%"
-            priority
-            className={styles.image}
-          />
+      <div className={styles.banner}>
+        <div className={styles.sectionTitle}>
+          <h1>{cat}</h1>
+          <div className={styles.imageContainer}>
+            <Image
+              src="/blog.png"
+              alt="thumbnail"
+              fill
+              sizes="100%"
+              priority
+              className={styles.image}
+            />
+          </div>
         </div>
       </div>
       <div className={styles.content}>
