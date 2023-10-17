@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AiFillCloseSquare } from "react-icons/ai";
 import { signOut, useSession } from "next-auth/react";
 import { Category } from "../../../prisma/schemaTypes";
+import Logo from "../logo/Logo";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
@@ -66,9 +67,9 @@ const AuthLinks = () => {
             <AiFillCloseSquare onClick={closeMenu} />
           </div>
           <div className={styles.responsiveMenuWrapper}>
-            <Link href="/" onClick={closeMenu}>
-              Homepage
-            </Link>
+            <div onClick={closeMenu}>
+              <Logo title={"Home"} />
+            </div>
             {status === "unauthenticated" ? (
               <Link href="/login" onClick={closeMenu}>
                 Login

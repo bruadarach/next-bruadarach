@@ -4,6 +4,7 @@ import Link from "next/link";
 import AuthLinks from "../authLinks/AuthLinks";
 import ThemeToggle from "../themeToggle/ThemeToggle";
 import SocialAccount from "../socialAccount/SocialAccount";
+import Logo from "../logo/Logo";
 
 const Navbar = () => {
   return (
@@ -13,12 +14,12 @@ const Navbar = () => {
         <ThemeToggle />
       </div>
       <div className={styles.logo}>
-        <Link href="/">BRUADARACH.</Link>
+        <Logo title={"BRUADARACH."} />
       </div>
       <div className={styles.links}>
-        <Link href="/" className={styles.link}>
-          Home
-        </Link>
+        <div className={styles.link}>
+          <Logo title={"Home"} />
+        </div>
         <AuthLinks />
       </div>
     </div>
