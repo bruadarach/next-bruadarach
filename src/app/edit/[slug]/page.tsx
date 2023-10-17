@@ -162,6 +162,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
 
     try {
       const data = await res.json();
+      console.log(data, "data");
       router.push(`/posts/${data.slug}`);
     } catch (error) {
       console.log(error);
