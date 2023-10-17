@@ -156,7 +156,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style",
+        catSlug: catSlug,
       }),
     });
 
@@ -209,7 +209,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         <ReactQuill
           theme="snow"
           value={value}
-          onChange={(content) => setValue(content)}
+          onChange={setValue}
           placeholder="Write your story..."
         />
       </div>
