@@ -150,6 +150,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
 
   const handleSubmit = async () => {
     const res = await fetch(`/api/posts/${params.slug}`, {
+      cache: "no-store",
       method: "PUT",
       body: JSON.stringify({
         title: title,
@@ -158,9 +159,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         slug: slugify(title),
         catSlug: catSlug,
       }),
-      headers: {
-        "Cache-Control": "no-store",
-      },
     });
 
     try {
