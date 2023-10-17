@@ -17,7 +17,13 @@ export const GET = async (
     });
 
     const responseBody = JSON.stringify(post);
-    const responseOptions = { status: 200 };
+    // 캐싱 비활성화를 위한 Cache-Control 헤더 설정
+    const responseOptions = {
+      status: 200,
+      headers: {
+        "Cache-Control": "no-store",
+      },
+    };
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
