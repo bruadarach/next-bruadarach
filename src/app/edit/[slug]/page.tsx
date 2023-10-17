@@ -209,7 +209,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
         <ReactQuill
           theme="snow"
           value={value}
-          onChange={setValue}
+          onChange={(content) => setValue(content)}
           placeholder="Write your story..."
         />
       </div>
