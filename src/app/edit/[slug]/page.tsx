@@ -57,19 +57,23 @@ const Edit = ({ params }: { params: { slug: string } }) => {
     const checkSession = async () => {
       const { slug } = params;
       const post = await getData(slug);
-      setTitle(post.title);
-      setValue(post.desc);
-      setCatSlug(post.catSlug);
-      setMedia(post.img);
 
       if (status === "unauthenticated") {
         await router.push("/login");
+        return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 로그인화면으로 이동시키기 위해 return 사용
       }
 
       if (sessionData?.user?.email !== post.user.email) {
         alert("You are not the author of this post");
         await router.push("/");
+        return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 홈화면으로 이동시키기 위해 return 사용
       }
+
+      // 나머지 코드 실행
+      setTitle(post.title);
+      setValue(post.desc);
+      setCatSlug(post.catSlug);
+      setMedia(post.img);
     };
 
     if (status === "loading") {
