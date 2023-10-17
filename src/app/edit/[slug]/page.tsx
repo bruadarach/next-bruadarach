@@ -15,6 +15,7 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import Loading from "@/components/loading/Loading";
+import { revalidatePath } from "next/cache";
 
 interface FileData {
   lastModified: number;
@@ -163,6 +164,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
 
     try {
       const data = await res.json();
+      revalidatePath(`/posts/${data.slug}`); // 해당 경로 무효화
       router.push(`/posts/${data.slug}`);
     } catch (error) {
       console.log(error);
