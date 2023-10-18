@@ -239,6 +239,7 @@ const Edit = ({ params }: EditProps) => {
       }),
     });
     mutate();
+    router.push(`/posts/${slug}`);
   };
 
   return (
