@@ -57,10 +57,13 @@ const fetcher = async (url: string) => {
 };
 
 interface EditProps {
-  slug: string;
+  params: {
+    slug: string;
+  };
 }
 
-const Edit = ({ slug }: EditProps) => {
+const Edit = ({ params }: EditProps) => {
+  const { slug } = params;
   const { status, data: sessionData } = useSession();
   const router = useRouter();
   const [catSlug, setCatSlug] = useState("");
