@@ -227,19 +227,30 @@ const Edit = ({ params }: EditProps) => {
   const handleSave = async () => {
     const sanitizedHtml = DOMPurify.sanitize(value);
 
-    await fetch(`https://next-bruadarach.vercel.app/api/posts/${slug}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        desc: sanitizedHtml,
-        img: media,
-        slug: slugify(title),
-        catSlug: catSlug,
-      }),
-    });
-    mutate();
-    router.push(`/posts/${slug}`);
+    try {
+      const res = await fetch(`/api/posts/${params.slug}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          title: title,
+          desc: sanitizedHtml, // 사용자 입력이 아닌, 정제된 HTML를 사용해야 합니다.
+          img: media,
+          slug: slugify(title),
+          catSlug: catSlug || "style",
+        }),
+      });
+
+      if (res.status === 200) {
+        const data = await res.json();
+        router.push(`/posts/${data.slug}`);
+        // 성공적으로 업데이트 후 mutate 호출
+        mutate();
+      } else {
+        // 에러 처리
+        console.error("Failed to update post");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
