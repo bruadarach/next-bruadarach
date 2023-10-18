@@ -4,11 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./edit.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-});
+import ReactQuill from "react-quill";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
@@ -19,6 +15,8 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import Loading from "@/components/loading/Loading";
+import useSWR from "swr";
+import DOMPurify from "dompurify";
 
 interface FileData {
   lastModified: number;
@@ -27,66 +25,113 @@ interface FileData {
   type: string;
 }
 
-const getData = async (slug: string) => {
-  try {
-    const res = await fetch(
-      `https://next-bruadarach.vercel.app/api/posts/${slug}`,
-      {
-        cache: "no-store",
-      }
-    );
+// const getData = async (slug: string) => {
+//   try {
+//     const res = await fetch(
+//       `https://next-bruadarach.vercel.app/api/posts/${slug}`,
+//       {
+//         cache: "no-store",
+//       }
+//     );
 
-    if (!res.ok) {
-      console.error("Fetch error:", res.status, res.statusText);
-      throw new Error("Failed");
-    }
-    return res.json();
-  } catch (error) {
-    console.error("getData error:", error);
+//     if (!res.ok) {
+//       console.error("Fetch error:", res.status, res.statusText);
+//       throw new Error("Failed");
+//     }
+//     return res.json();
+//   } catch (error) {
+//     console.error("getData error:", error);
+//     throw error;
+//   }
+// };
+
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (!res.ok) {
+    const error = new Error(data.message);
     throw error;
   }
+  return data;
 };
 
-const Edit = ({ params }: { params: { slug: string } }) => {
+interface EditProps {
+  slug: string;
+}
+
+const Edit = ({ slug }: EditProps) => {
   const { status, data: sessionData } = useSession();
   const router = useRouter();
   const [catSlug, setCatSlug] = useState("");
   const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
+  // const [editedDesc, setEditedDesc] = useState<null | string>(null);
   const [file, setFile] = useState<FileData | null>(null);
   const [media, setMedia] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const { data, mutate, isLoading } = useSWR(
+    `https://next-bruadarach.vercel.app/api/posts/${slug}`,
+    fetcher
+  );
+
   useEffect(() => {
-    const checkSession = async () => {
-      const { slug } = params;
-      const post = await getData(slug);
-
-      if (status === "unauthenticated") {
-        await router.push("/login");
-        return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 로그인화면으로 이동시키기 위해 return 사용
-      }
-
-      if (sessionData?.user?.email !== post.user.email) {
-        alert("You are not the author of this post");
-        await router.push("/");
-        return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 홈화면으로 이동시키기 위해 return 사용
-      }
-
-      // 나머지 코드 실행
-      setTitle(post.title);
-      setValue(post.desc);
-      setCatSlug(post.catSlug);
-      setMedia(post.img);
-    };
-
-    if (status === "loading") {
-      // 세션 데이터가 아직 로드되지 않았을 때 기다림
-      return;
+    if (data) {
+      setTitle(data.title);
+      setValue(data.desc);
+      setCatSlug(data.catSlug);
+      setMedia(data.img);
     }
 
-    checkSession();
-  }, [params, status, sessionData, router]);
+    if (!isLoading) {
+      if (status === "unauthenticated") {
+        router.push("/login");
+      } else if (sessionData?.user?.email !== data?.user.email) {
+        alert("You are not the author of this post");
+        router.push("/");
+      }
+    }
+  }, [data, isLoading, status, sessionData, router]);
+
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     if (status === "unauthenticated") {
+  //       router.push("/login");
+  //     } else if (sessionData?.user?.email !== data?.user.email) {
+  //       alert("You are not the author of this post");
+  //       router.push("/");
+  //     }
+  //   }
+  // }, [isLoading, status, sessionData, data, router]);
+
+  // useEffect(() => {
+  //   const checkSession = async () => {
+  //     if (status === "unauthenticated") {
+  //       await router.push("/login");
+  //       return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 로그인화면으로 이동시키기 위해 return 사용
+  //     }
+
+  //     if (sessionData?.user?.email !== post.user.email) {
+  //       alert("You are not the author of this post");
+  //       await router.push("/");
+  //       return; // 이후 코드 실행을 막고(Edit페이지 로드 안하고) 바로 홈화면으로 이동시키기 위해 return 사용
+  //     }
+
+  //     // 나머지 코드 실행
+  //     setTitle(post.title);
+  //     setValue(post.desc);
+  //     setCatSlug(post.catSlug);
+  //     setMedia(post.img);
+  //   };
+
+  //   if (status === "loading") {
+  //     // 세션 데이터가 아직 로드되지 않았을 때 기다림
+  //     return;
+  //   }
+
+  //   checkSession();
+  // }, [params, status, sessionData, router]);
 
   useEffect(() => {
     if (file) {
@@ -152,31 +197,48 @@ const Edit = ({ params }: { params: { slug: string } }) => {
       .replace(/-+/g, "-");
   };
 
-  const handleSubmit = async () => {
-    const res = await fetch(`/api/posts/${params.slug}`, {
-      cache: "no-store",
+  // const handleSubmit = async () => {
+  //   const res = await fetch(`/api/posts/${params.slug}`, {
+  //     cache: "no-store",
+  //     method: "PUT",
+  //     body: JSON.stringify({
+  //       title: title,
+  //       desc: value,
+  //       img: media,
+  //       slug: slugify(title),
+  //       catSlug: catSlug,
+  //     }),
+  //   });
+
+  //   try {
+  //     const data = await res.json();
+  //     router.push(`/posts/${data.slug}`);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleSave = async () => {
+    const sanitizedHtml = DOMPurify.sanitize(value);
+
+    await fetch(`https://next-bruadarach.vercel.app/api/posts/${slug}`, {
       method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: title,
-        desc: value,
+        desc: sanitizedHtml,
         img: media,
         slug: slugify(title),
         catSlug: catSlug,
       }),
     });
-
-    try {
-      const data = await res.json();
-      router.push(`/posts/${data.slug}`);
-    } catch (error) {
-      console.log(error);
-    }
+    mutate();
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.buttons}>
-        <button className={styles.editButton} onClick={() => handleSubmit()}>
+        <button className={styles.editButton} onClick={() => handleSave()}>
           Edit
         </button>
         <button

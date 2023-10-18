@@ -4,10 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-});
+import ReactQuill from "react-quill";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
@@ -18,6 +15,7 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import Loading from "@/components/loading/Loading";
+import DOMPurify from "dompurify";
 
 interface FileData {
   lastModified: number;
@@ -41,6 +39,11 @@ const Write = () => {
       router.push("/login");
     }
   }, [router, status]);
+
+  useEffect(() => {
+    const sanitizedHtml = DOMPurify.sanitize(value);
+    console.log(sanitizedHtml);
+  }, [value]);
 
   useEffect(() => {
     if (file) {
@@ -104,11 +107,13 @@ const Write = () => {
   };
 
   const handleSubmit = async () => {
+    const sanitizedHtml = DOMPurify.sanitize(value);
+
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
         title: title,
-        desc: value,
+        desc: sanitizedHtml,
         img: media,
         slug: slugify(title),
         catSlug: catSlug,

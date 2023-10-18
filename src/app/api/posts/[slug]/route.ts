@@ -1,7 +1,6 @@
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
-import { revalidatePath } from "next/cache";
 
 // GET SINGLE POST
 export const GET = async (
@@ -84,8 +83,6 @@ export const PUT = async (
 
     const responseBody = JSON.stringify(post);
     const responseOptions = { status: 200 };
-    // 글을 업데이트하고 나서 해당 페이지를 다시 렌더링하기 위해 revalidatePath 사용
-    revalidatePath("/posts/[slug]", "page");
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
