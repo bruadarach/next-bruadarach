@@ -33,7 +33,7 @@ export const DELETE = async (
 };
 
 // UPDATE A COMMENT
-export const PUT = async (
+export const PATCH = async (
   req: Request,
   { params }: { params: { id: string } }
 ) => {

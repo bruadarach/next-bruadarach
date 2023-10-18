@@ -57,7 +57,7 @@ export const DELETE = async (
 };
 
 // EDIT POST
-export const PUT = async (
+export const PATCH = async (
   req: Request,
   { params }: { params: { slug: string } }
 ) => {

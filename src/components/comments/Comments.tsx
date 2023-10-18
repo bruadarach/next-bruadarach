@@ -65,7 +65,7 @@ const Comments = ({ postSlug }: CommentsProps) => {
     await fetch(
       `https://next-bruadarach.vercel.app/api/comments/${commentId}`,
       {
-        method: "PUT",
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ desc: editedDesc }),
       }
