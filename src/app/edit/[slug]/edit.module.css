@@ -52,6 +52,7 @@
 
 .select {
   padding: 10px 20px;
+  margin-right: 10px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -110,7 +111,7 @@
 .thumbnail {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -142,7 +143,7 @@
 }
 
 .imageContainer {
-  width: 150px;
-  height: 150px;
+  width: 220px;
+  height: 220px;
   position: relative;
 }

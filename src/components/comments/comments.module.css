@@ -157,3 +157,16 @@
 .buttonsForEdit button:last-child:hover {
   background-color: #bdbdbdc5;
 }
+
+@media screen and (max-width: 430px) {
+  .write {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .buttonWrapper {
+    align-self: flex-end;
+  }
+}

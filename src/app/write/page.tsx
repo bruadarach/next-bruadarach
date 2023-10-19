@@ -37,11 +37,11 @@ const Write = () => {
   const [media, setMedia] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-  }, [router, status]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/login");
+  //   }
+  // }, [router, status]);
 
   useEffect(() => {
     const sanitizedHtml = DOMPurify.sanitize(value);

@@ -97,14 +97,16 @@ const Comments = ({ postSlug }: CommentsProps) => {
           value={desc}
           placeholder={
             status === "unauthenticated"
-              ? "You need to login to write a comment"
+              ? "Login to write a comment"
               : "Write a comment"
           }
           className={styles.input}
         />
-        <button onClick={handleSubmit} className={styles.button}>
-          send
-        </button>
+        <div className={styles.buttonWrapper}>
+          <button onClick={handleSubmit} className={styles.button}>
+            send
+          </button>
+        </div>
       </div>
       <div className={styles.comments}>
         {isLoading
