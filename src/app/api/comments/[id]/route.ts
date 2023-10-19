@@ -2,7 +2,6 @@ import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 
-// DELETE A COMMENT
 export const DELETE = async (
   req: Request,
   { params }: { params: { id: string } }
@@ -32,7 +31,6 @@ export const DELETE = async (
   }
 };
 
-// UPDATE A COMMENT
 export const PATCH = async (
   req: Request,
   { params }: { params: { id: string } }

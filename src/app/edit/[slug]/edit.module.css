@@ -61,13 +61,13 @@
   font-size: 16px;
   font-family: Arial, sans-serif;
   text-transform: capitalize;
-  -webkit-appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
 .select::-ms-expand {
-  display: none; /* Remove default arrow in IE 10+ */
+  display: none;
 }
 
 .select:focus {
@@ -86,7 +86,7 @@
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid grey; /*  arrow color */
+  border-top: 5px solid grey;
 }
 
 .container input {

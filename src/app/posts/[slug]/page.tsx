@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./singlePage.module.css";
 import Image from "next/image";
 import Side from "@/components/side/Side";

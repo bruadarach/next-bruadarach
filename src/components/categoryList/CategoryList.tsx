@@ -1,11 +1,6 @@
-import React from "react";
 import styles from "./categoryList.module.css";
 import Link from "next/link";
-import Image from "next/image";
-import SectionTitle from "../sectionTitle/SectionTitle";
 import { Category } from "../../../prisma/schemaTypes";
-import { BsFillHouseFill } from "react-icons/bs";
-import { FaPassport } from "react-icons/fa";
 
 const getData = async () => {
   try {

@@ -2,7 +2,6 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
 
-// GET POSTS
 interface QueryOptions {
   take: number;
   skip: number;
@@ -93,7 +92,6 @@ export const GET = async (req: Request) => {
   }
 };
 
-// CREATE A POST
 export const POST = async (req: Request) => {
   const session = await getAuthSession();
 

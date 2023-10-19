@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./blogPage.module.css";
 import CardList from "@/components/cardList/CardList";
 import Side from "@/components/side/Side";

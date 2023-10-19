@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./loading.module.css";
 import spinner from "../../../public/spinner.svg";
 import Image from "next/image";

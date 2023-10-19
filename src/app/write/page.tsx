@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
@@ -45,7 +45,6 @@ const Write = () => {
 
   useEffect(() => {
     const sanitizedHtml = DOMPurify.sanitize(value);
-    console.log(sanitizedHtml);
   }, [value]);
 
   useEffect(() => {

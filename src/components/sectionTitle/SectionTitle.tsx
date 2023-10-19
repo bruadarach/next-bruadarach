@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./sectionTitle.module.css";
 import { BsBookmarkStarFill } from "react-icons/bs";
 

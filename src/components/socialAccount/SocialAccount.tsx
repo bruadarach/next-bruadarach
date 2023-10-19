@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./socialAccount.module.css";
 import Link from "next/link";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";

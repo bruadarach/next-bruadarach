@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import styles from "./editButton.module.css";
 import { useRouter } from "next/navigation";
 

@@ -2,7 +2,6 @@ import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 import { getAuthSession } from "@/utils/auth";
 
-// GET SINGLE POST
 export const GET = async (
   req: Request,
   { params }: { params: { slug: string } }
@@ -27,7 +26,6 @@ export const GET = async (
   }
 };
 
-// DELETE POST
 export const DELETE = async (
   req: Request,
   { params }: { params: { slug: string } }
@@ -56,7 +54,6 @@ export const DELETE = async (
   }
 };
 
-// EDIT POST
 export const PATCH = async (
   req: Request,
   { params }: { params: { slug: string } }

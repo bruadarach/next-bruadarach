@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./navbar.module.css";
 import AuthLinks from "../authLinks/AuthLinks";
 import ThemeToggle from "../themeToggle/ThemeToggle";

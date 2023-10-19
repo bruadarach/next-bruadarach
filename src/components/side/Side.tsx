@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./side.module.css";
 import Link from "next/link";
 import SectionTitle from "../sectionTitle/SectionTitle";

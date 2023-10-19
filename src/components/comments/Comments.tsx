@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./comments.module.css";
 import Image from "next/image";
 import SectionTitle from "@/components/sectionTitle/SectionTitle";
