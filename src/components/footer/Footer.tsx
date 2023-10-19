@@ -3,6 +3,7 @@ import styles from "./footer.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import SocialAccount from "../socialAccount/SocialAccount";
+import { socialAccounts } from "../socialAccount/SocialAccount";
 
 const Footer = () => {
   return (
@@ -33,20 +34,25 @@ const Footer = () => {
         <div className={styles.list}>
           <span className={styles.listTitle}>Links</span>
           <Link href="/">Homepage</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Contact</Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Contact</span>
-          <Link href="/">Email</Link>
-          <Link href="/">CV</Link>
-          <Link href="/">Blog</Link>
+          <Link href="mailto:suji.sujeongji@gmail.com">Email</Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Social</span>
-          <Link href="/">Github</Link>
-          <Link href="/">Linkedin</Link>
-          <Link href="/">Notion</Link>
+          {socialAccounts.map((account, index) => (
+            <li key={index}>
+              <Link
+                href={account.href}
+                target="_blank"
+                passHref
+                rel="noopener noreferrer"
+              >
+                {account.name}
+              </Link>
+            </li>
+          ))}
         </div>
       </div>
     </div>

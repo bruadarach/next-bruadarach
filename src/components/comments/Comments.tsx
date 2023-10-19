@@ -8,6 +8,7 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { CommentProps } from "../../../prisma/schemaTypes";
 import { useRouter } from "next/navigation";
+import Loading from "../loading/Loading";
 
 interface CommentsProps {
   postSlug: string;
@@ -109,69 +110,71 @@ const Comments = ({ postSlug }: CommentsProps) => {
         </div>
       </div>
       <div className={styles.comments}>
-        {isLoading
-          ? "Loading"
-          : data?.map((comment: CommentProps, index: number) => (
-              <div key={comment.id} className={styles.comment}>
-                <div className={styles.user}>
-                  <Image
-                    src={comment.user.image ? comment.user.image : "/user.png"}
-                    alt="user"
-                    width={42}
-                    height={42}
-                    priority
-                    className={styles.userImage}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          data?.map((comment: CommentProps, index: number) => (
+            <div key={comment.id} className={styles.comment}>
+              <div className={styles.user}>
+                <Image
+                  src={comment.user.image ? comment.user.image : "/user.png"}
+                  alt="user"
+                  width={42}
+                  height={42}
+                  priority
+                  className={styles.userImage}
+                />
+                <div className={styles.userInfo}>
+                  <span className={styles.userName}>{comment.user.name}</span>
+                  <span className={styles.date}>
+                    {comment.updatedAt
+                      ? new Date(comment.updatedAt).toLocaleString()
+                      : new Date(comment.createdAt).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              {selectedCommentID === comment.id ? (
+                <div className={styles.write}>
+                  <textarea
+                    onChange={(e) => setEditedDesc(e.target.value)}
+                    value={editedDesc || comment.desc}
+                    className={styles.input}
                   />
-                  <div className={styles.userInfo}>
-                    <span className={styles.userName}>{comment.user.name}</span>
-                    <span className={styles.date}>
-                      {comment.updatedAt
-                        ? new Date(comment.updatedAt).toLocaleString()
-                        : new Date(comment.createdAt).toLocaleString()}
-                    </span>
+                  <div className={styles.buttonsForEdit}>
+                    <button
+                      onClick={() => handleSave(comment.id)}
+                      className={styles.button}
+                    >
+                      save
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSelectedCommentID(null);
+                        setEditedDesc(null);
+                      }}
+                      className={styles.button}
+                    >
+                      cancel
+                    </button>
                   </div>
                 </div>
-                {selectedCommentID === comment.id ? (
-                  <div className={styles.write}>
-                    <textarea
-                      onChange={(e) => setEditedDesc(e.target.value)}
-                      value={editedDesc || comment.desc}
-                      className={styles.input}
-                    />
-                    <div className={styles.buttonsForEdit}>
-                      <button
-                        onClick={() => handleSave(comment.id)}
-                        className={styles.button}
-                      >
-                        save
-                      </button>
-                      <button
-                        onClick={() => {
-                          setSelectedCommentID(null);
-                          setEditedDesc(null);
-                        }}
-                        className={styles.button}
-                      >
-                        cancel
-                      </button>
-                    </div>
+              ) : (
+                <p className={styles.desc}>{comment.desc}</p>
+              )}
+              {selectedCommentID !== comment.id &&
+                sessionData?.user?.email === comment.user.email && (
+                  <div className={styles.buttons}>
+                    <button onClick={() => setSelectedCommentID(comment.id)}>
+                      edit
+                    </button>
+                    <button onClick={() => handleDelete(comment.id)}>
+                      delete
+                    </button>
                   </div>
-                ) : (
-                  <p className={styles.desc}>{comment.desc}</p>
                 )}
-                {selectedCommentID !== comment.id &&
-                  sessionData?.user?.email === comment.user.email && (
-                    <div className={styles.buttons}>
-                      <button onClick={() => setSelectedCommentID(comment.id)}>
-                        edit
-                      </button>
-                      <button onClick={() => handleDelete(comment.id)}>
-                        delete
-                      </button>
-                    </div>
-                  )}
-              </div>
-            ))}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

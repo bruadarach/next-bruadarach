@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { RxNotionLogo } from "react-icons/rx";
 
-const socialAccounts = [
+export const socialAccounts = [
   {
     name: "Github",
     href: "https://github.com/bruadarach",
