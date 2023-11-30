@@ -1,5 +1,20 @@
+.desktop {
+  flex: 1;
+  display: flex;
+}
+
+.mobile {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+}
+
 .link {
   cursor: pointer;
+  margin-left: 30px;
 }
 
 .burger {
@@ -9,7 +24,6 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  display: none;
 }
 
 .line {
@@ -37,10 +51,11 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 100px 80px;
   overflow-y: hidden;
-  display: none;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
 }
 
 .responsiveMenuWrapper {
@@ -50,7 +65,8 @@
   justify-content: space-evenly;
   gap: 22px;
   font-size: 22px;
-  height: 90vh;
+  height: 80vh;
+  transition: all 0.3s ease;
 }
 
 .icon {
@@ -61,16 +77,14 @@
   right: 30px;
 }
 
-@media screen and (max-width: 1024px) {
-  .burger {
-    display: flex;
+@media screen and (max-width: 768px) {
+  .desktop {
+    display: none;
   }
+}
 
-  .responsiveMenus {
-    display: flex;
-  }
-
-  .link {
+@media screen and (min-width: 769px) {
+  .mobile {
     display: none;
   }
 }

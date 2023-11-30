@@ -36,68 +36,118 @@ const AuthLinks = () => {
     fetchData();
   }, []);
 
+  const openMenu = () => {
+    document.body.style.overflowY = "hidden";
+    setOpen(true);
+  };
+
   const closeMenu = () => {
+    document.body.style.overflowY = "auto";
     setOpen(false);
   };
 
   return (
-    <>
-      {status === "unauthenticated" ? (
-        <Link href="/login" className={styles.link} onClick={closeMenu}>
-          Login
-        </Link>
-      ) : (
-        <>
-          <Link href="/write" className={styles.link} onClick={closeMenu}>
-            Write
-          </Link>
-          <span className={styles.link} onClick={() => signOut()}>
-            Logout
-          </span>
-        </>
-      )}
-      <div className={styles.burger} onClick={() => setOpen(!open)}>
-        <div className={styles.line}></div>
-        <div className={styles.line}></div>
-        <div className={styles.line}></div>
+    <div className={styles.container}>
+      <div className={styles.desktop}>
+        {status === "unauthenticated" ? (
+          <div className={styles.links}>
+            <Link href="/" className={styles.link} onClick={closeMenu}>
+              Home
+            </Link>
+            <Link href="/login" className={styles.link} onClick={closeMenu}>
+              Login
+            </Link>
+          </div>
+        ) : (
+          <div className={styles.links}>
+            <Link href="/" className={styles.link} onClick={closeMenu}>
+              Home
+            </Link>
+            <Link href="/write" className={styles.link} onClick={closeMenu}>
+              Write
+            </Link>
+            <span className={styles.link} onClick={() => signOut()}>
+              Logout
+            </span>
+          </div>
+        )}
       </div>
-      {open && (
-        <div className={styles.responsiveMenus}>
-          <div className={styles.icon} onClick={() => setOpen(!open)}>
-            <AiFillCloseSquare onClick={closeMenu} />
-          </div>
-          <div className={styles.responsiveMenuWrapper}>
-            <div onClick={closeMenu}>
-              <Logo title={"Home"} />
-            </div>
-            {status === "unauthenticated" ? (
-              <Link href="/login" onClick={closeMenu}>
-                Login
-              </Link>
-            ) : (
-              <>
-                <Link href="/write" onClick={closeMenu}>
-                  Write
-                </Link>
-                <span className={styles.link} onClick={closeMenu}>
-                  Logout
-                </span>
-              </>
-            )}
-            <div className={styles.borderLine}></div>
-            {categories?.map((cat: Category) => (
-              <Link
-                href={`/blog?cat=${cat.slug}`}
-                key={cat.slug}
-                onClick={closeMenu}
-              >
-                {cat.slug}
-              </Link>
-            ))}
-          </div>
+      <div className={styles.mobile}>
+        <div className={styles.burger} onClick={openMenu}>
+          <div className={styles.line}></div>
+          <div className={styles.line}></div>
+          <div className={styles.line}></div>
         </div>
-      )}
-    </>
+        {open && (
+          <div className={styles.responsiveMenus}>
+            <div
+              className={styles.icon}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeMenu();
+              }}
+            >
+              <AiFillCloseSquare />
+            </div>
+            <div className={styles.responsiveMenuWrapper}>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeMenu();
+                }}
+              >
+                <Logo title={"Home"} />
+              </div>
+              {status === "unauthenticated" ? (
+                <Link
+                  href="/login"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeMenu();
+                  }}
+                >
+                  Login
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/write"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeMenu();
+                    }}
+                  >
+                    Write
+                  </Link>
+                  <span
+                    className={styles.link}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeMenu();
+                    }}
+                  >
+                    Logout
+                  </span>
+                </>
+              )}
+              <div className={styles.borderLine}></div>
+              {categories?.map((cat: Category) => (
+                <Link
+                  href={`/blog?cat=${cat.slug}`}
+                  key={cat.slug}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeMenu();
+                  }}
+                >
+                  {cat.slug}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

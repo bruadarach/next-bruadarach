@@ -15,9 +15,6 @@ const Navbar = () => {
         <Logo title={"BRUADARACH."} />
       </div>
       <div className={styles.links}>
-        <div className={styles.link}>
-          <Logo title={"Home"} />
-        </div>
         <AuthLinks />
       </div>
     </div>
