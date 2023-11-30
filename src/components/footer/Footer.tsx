@@ -20,8 +20,9 @@ const Footer = () => {
           <h1 className={styles.logoText}>Bruadarach</h1>
         </div>
         <p>
-          This blog is built with Next.js and connected to MongoDB, offering the
-          convenience of CRUD operations for posts and comments. Explore my
+          This website is built with Next.js and MongoDB and offers
+          functionalities such as OAuth authentication, CRUD operations, image
+          upload, theme toggle, and responsive design. Feel free to explore my
           social accounts and do not hesitate to get in touch for inquiries, job
           opportunities, or just a friendly chat.
         </p>

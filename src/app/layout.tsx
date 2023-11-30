@@ -15,8 +15,9 @@ import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "Blog | Bruadarach",
-  description: "Full Stack Blog App with Next.js and MongoDB",
+  title: "Bruadarach",
+  description:
+    "A full-stack website built with Next.js and MongoDB and offering functionalities such as OAuth authentication, CRUD operations, image upload, theme toggle, and responsive design.",
 };
 
 export default function RootLayout({
