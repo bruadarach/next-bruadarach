@@ -50,19 +50,19 @@
 
 @media screen and (max-width: 768px) {
   .wrapper {
-    padding: 130px 100px;
+    padding: 50px 100px;
   }
 }
 
 @media screen and (max-width: 640px) {
   .wrapper {
-    padding: 130px 60px;
+    padding: 50px 60px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .wrapper {
-    padding: 130px 40px;
+    padding: 50px 40px;
   }
 
   .socialButton {
@@ -74,12 +74,12 @@
 
 @media screen and (max-width: 380px) {
   .container {
-    padding: 0;
+    padding: 50px 10px;
     width: 100%;
   }
 
   .wrapper {
-    padding: 20px;
+    padding: 50px 20px;
     width: 100%;
   }
 

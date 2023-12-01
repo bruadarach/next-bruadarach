@@ -99,6 +99,14 @@
 }
 
 @media screen and (max-width: 480px) {
+  .category {
+    font-size: 12px;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
   .title {
     font-size: 22px;
   }

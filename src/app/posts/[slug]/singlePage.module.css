@@ -131,6 +131,11 @@
 }
 
 @media screen and (max-width: 640px) {
+  .category {
+    padding: 8px;
+    font-size: 14px;
+  }
+
   .date {
     flex-direction: column;
     gap: 10px;
@@ -151,6 +156,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .category {
+    font-size: 12px;
+  }
+
   .postTitle {
     font-size: 28px;
   }
