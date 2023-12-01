@@ -87,7 +87,9 @@ export const GET = async (req: Request) => {
     }
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     return new NextResponse(errorMessage, { status: 500 });
   }
 };
@@ -124,7 +126,9 @@ export const POST = async (req: Request) => {
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     const errorResponseOptions = { status: 500 };
     return new NextResponse(errorMessage, errorResponseOptions);
   }

@@ -59,7 +59,7 @@ export const PATCH = async (
   } catch (error) {
     console.error(error);
     return new NextResponse(
-      JSON.stringify({ message: "Something went wrong" }),
+      JSON.stringify({ message: "An unexpected error occurred." }),
       { status: 500 }
     );
   }

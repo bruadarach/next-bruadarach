@@ -8,7 +8,9 @@ export const GET = async () => {
     return new NextResponse(responseBody, { status: 200 });
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     return new NextResponse(errorMessage, { status: 500 });
   }
 };

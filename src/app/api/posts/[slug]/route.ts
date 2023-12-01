@@ -20,7 +20,9 @@ export const GET = async (
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     const errorResponseOptions = { status: 500 };
     return new NextResponse(errorMessage, errorResponseOptions);
   }
@@ -48,7 +50,9 @@ export const DELETE = async (
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     const errorResponseOptions = { status: 500 };
     return new NextResponse(errorMessage, errorResponseOptions);
   }
@@ -83,7 +87,9 @@ export const PATCH = async (
     return new NextResponse(responseBody, responseOptions);
   } catch (error) {
     console.log(error);
-    const errorMessage = JSON.stringify({ message: "Something went wrong" });
+    const errorMessage = JSON.stringify({
+      message: "An unexpected error occurred.",
+    });
     const errorResponseOptions = { status: 500 };
     return new NextResponse(errorMessage, errorResponseOptions);
   }
