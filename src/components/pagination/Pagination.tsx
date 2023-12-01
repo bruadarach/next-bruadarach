@@ -24,7 +24,7 @@ const Pagination = ({ page, cat, hasPrev, hasNext }: PaginationProps) => {
         }
         disabled={!hasPrev}
       >
-        ◀ Previous
+        〈 PREVIOUS
       </button>
       <button
         className={styles.button}
@@ -35,7 +35,7 @@ const Pagination = ({ page, cat, hasPrev, hasNext }: PaginationProps) => {
         }
         disabled={!hasNext}
       >
-        Next ►
+        NEXT 〉
       </button>
     </div>
   );

@@ -48,7 +48,7 @@ const singlePage = async ({ params }: singlePageProps) => {
           <div className={`${styles.category} ${styles[post?.catSlug]}`}>
             {post?.catSlug}
           </div>
-          <h1>{post?.title}</h1>
+          <h1 className={styles.postTitle}>{post?.title}</h1>
           <div className={styles.user}>
             <div className={styles.userImageContainer}>
               <Image
