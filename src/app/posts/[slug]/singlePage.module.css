@@ -118,7 +118,7 @@
   }
 
   .postTitle {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   .userName {
@@ -137,6 +137,10 @@
     font-size: 14px;
   }
 
+  .postTitle {
+    font-size: 32px;
+  }
+
   .articleImageContainer {
     min-height: 400px;
   }
@@ -148,12 +152,12 @@
 
 @media screen and (max-width: 480px) {
   .postTitle {
-    font-size: 40px;
+    font-size: 28px;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .textContainer h1 {
-    font-size: 34px;
+  .postTitle {
+    font-size: 24px;
   }
 }

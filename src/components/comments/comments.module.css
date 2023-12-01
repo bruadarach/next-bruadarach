@@ -158,6 +158,18 @@
   background-color: #bdbdbdc5;
 }
 
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 0.5px solid #dadada;
+  }
+
+  .sectionTitleWrapper {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 430px) {
   .write {
     display: flex;

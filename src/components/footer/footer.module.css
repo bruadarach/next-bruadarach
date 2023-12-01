@@ -65,7 +65,7 @@
   .links {
     display: flex;
     justify-content: flex-start;
-    border-top: 0.1px solid #efefef;
+    border-top: 0.5px solid #dadada;
     width: max-content;
     padding: 40px 0px;
   }

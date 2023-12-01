@@ -91,7 +91,9 @@ const Comments = ({ postSlug }: CommentsProps) => {
 
   return (
     <div className={styles.container}>
-      <SectionTitle title="Comments" />
+      <div className={styles.sectionTitleWrapper}>
+        <SectionTitle title="Comments" />
+      </div>
       <div className={styles.write}>
         <textarea
           onChange={(e) => setDesc(e.target.value)}
