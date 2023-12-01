@@ -111,6 +111,11 @@ const Write = () => {
   const handleSubmit = async () => {
     const sanitizedHtml = DOMPurify.sanitize(value);
 
+    if (title === "" || value === "" || media === null) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -165,6 +170,7 @@ const Write = () => {
         placeholder="Title"
         className="title"
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <div className={styles.editor}>
         <ReactQuill
@@ -183,6 +189,7 @@ const Write = () => {
             onChange={(e) => handleChange(e)}
             style={{ display: "none" }}
             accept="image/*"
+            required
           />
           <button className={styles.addButton}>
             <label htmlFor="image">
