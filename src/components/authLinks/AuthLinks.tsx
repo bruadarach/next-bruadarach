@@ -119,15 +119,15 @@ const AuthLinks = () => {
                   >
                     Write
                   </Link>
-                  <span
-                    className={styles.link}
+                  <Link
+                    href="/"
                     onClick={(e) => {
                       e.stopPropagation();
                       closeMenu();
                     }}
                   >
                     Logout
-                  </span>
+                  </Link>
                 </>
               )}
               <div className={styles.borderLine}></div>

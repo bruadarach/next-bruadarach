@@ -81,6 +81,14 @@
   .desktop {
     display: none;
   }
+
+  .responsiveMenuWrapper {
+    font-size: 20px;
+  }
+
+  .icon {
+    font-size: 25px;
+  }
 }
 
 @media screen and (min-width: 769px) {
