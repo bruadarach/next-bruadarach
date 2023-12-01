@@ -18,3 +18,9 @@
   gap: 10px;
   margin-bottom: 50px;
 }
+
+@media screen and (max-width: 1024px) {
+  .posts {
+    gap: 0px;
+  }
+}

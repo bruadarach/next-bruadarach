@@ -5,16 +5,15 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 18px;
 }
 
 .category {
   width: fit-content;
-  text-transform: capitalize;
   border-radius: 20px;
   padding: 10px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   font-family: var(--font-roboto);
 }
@@ -44,7 +43,7 @@
 }
 
 .textContainer h1 {
-  font-size: 60px;
+  font-size: 48px;
 }
 
 .user {
@@ -72,7 +71,9 @@
 .date {
   display: flex;
   gap: 20px;
-  color: #b0b0b0;
+  color: #bdbdbd;
+  font-family: var(--font-inter);
+  font-size: 15px;
 }
 
 .articleImageContainer {
@@ -112,18 +113,28 @@
 }
 
 @media screen and (max-width: 1024px) {
+  .container {
+    margin-top: 30px;
+  }
+
+  .container h1 {
+    font-size: 40px;
+  }
+
+  .userName {
+    font-size: 18px;
+  }
+
   .side {
     display: none;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .textContainer h1 {
-    font-size: 46px;
-  }
-
   .date {
     flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
   }
 
   .articleImageContainer {
@@ -138,5 +149,11 @@
 @media screen and (max-width: 480px) {
   .textContainer h1 {
     font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .textContainer h1 {
+    font-size: 34px;
   }
 }
