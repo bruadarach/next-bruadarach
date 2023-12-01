@@ -41,7 +41,9 @@ const CardList = async ({ page, cat }: CardListProps) => {
 
   return (
     <div className={styles.container}>
-      <SectionTitle title="Latest Posts" />
+      <div className={styles.sectionTitleWrapper}>
+        <SectionTitle title="Latest Posts" />
+      </div>
       <div className={styles.posts}>
         {posts?.length ? (
           posts.map((post: Post) => <Card key={post.slug} post={post} />)

@@ -74,6 +74,10 @@
     gap: 20px;
   }
 
+  .textContainer {
+    padding: 0px 7px;
+  }
+
   .postTitle {
     font-size: 34px;
   }

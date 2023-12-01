@@ -65,6 +65,10 @@
   background-color: #c58ee6;
 }
 
+.title {
+  line-height: 1.5;
+}
+
 .desc {
   font-size: 18px;
   white-space: pre-wrap;
