@@ -13,6 +13,7 @@ import Footer from "@/components/footer/Footer";
 import { ThemeContextProvider } from "@/context/ThemeContext";
 import ThemeProvider from "@/providers/ThemeProvider";
 import AuthProvider from "@/providers/AuthProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Bruadarach",
@@ -40,6 +41,7 @@ export default function RootLayout({
                   <Footer />
                 </div>
               </div>
+              <Analytics />
             </ThemeProvider>
           </ThemeContextProvider>
         </AuthProvider>
