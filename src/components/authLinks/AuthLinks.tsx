@@ -123,6 +123,7 @@ const AuthLinks = () => {
                     href="/"
                     onClick={(e) => {
                       e.stopPropagation();
+                      signOut();
                       closeMenu();
                     }}
                   >
