@@ -14,7 +14,6 @@ const Card = ({ post }: { post: Post }) => {
             fill
             sizes="100%"
             className={styles.image}
-            priority
           />
         </div>
       )}
