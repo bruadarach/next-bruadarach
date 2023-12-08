@@ -1,10 +1,10 @@
 import {
-  Inter as Inter,
-  Open_Sans as Open_Sans,
-  Nunito_Sans as Nunito_Sans,
-  Roboto as Roboto,
-  Permanent_Marker as Permanent_Marker,
-  Croissant_One as Croissant_One,
+  Inter,
+  Open_Sans,
+  Nunito_Sans,
+  Roboto,
+  Permanent_Marker,
+  Croissant_One,
 } from "next/font/google";
 
 export const inter = Inter({

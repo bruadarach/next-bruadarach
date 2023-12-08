@@ -1,12 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import {
-  inter,
-  openSans,
-  nunitoSans,
-  roboto,
-  permanentMarker,
-  croissantOne,
+  inter as inter,
+  openSans as openSans,
+  nunitoSans as nunitoSans,
+  roboto as roboto,
+  permanentMarker as permanentMarker,
+  croissantOne as croissantOne,
 } from "./fonts";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
