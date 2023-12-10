@@ -88,7 +88,7 @@ const singlePage = async ({ params }: singlePageProps) => {
             </div>
           )}
           <div className={styles.desc}>
-            <p dangerouslySetInnerHTML={{ __html: post?.desc }} />
+            <div dangerouslySetInnerHTML={{ __html: post?.desc }} />
           </div>
           <div className={styles.comments}>
             <Comments postSlug={slug} />

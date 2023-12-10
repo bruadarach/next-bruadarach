@@ -46,7 +46,7 @@ const Featured = async () => {
               <h2 className={styles.postTitle}>{post?.title}</h2>
             </Link>
             {post?.desc && (
-              <p
+              <div
                 className={styles.postDesc}
                 dangerouslySetInnerHTML={{ __html: post?.desc }}
               />

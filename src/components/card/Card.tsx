@@ -29,7 +29,7 @@ const Card = ({ post }: { post: Post }) => {
         <Link prefetch={false} href={`/posts/${post.slug}`}>
           <h1 className={styles.title}>{post.title}</h1>
         </Link>
-        <p
+        <div
           className={styles.desc}
           dangerouslySetInnerHTML={{ __html: post.desc }}
         />
