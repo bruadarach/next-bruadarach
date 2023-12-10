@@ -91,7 +91,11 @@ const Side = async () => {
         <div className={styles.categories}>
           {categories &&
             categories.map((category: Category) => (
-              <Link href={`/blog?cat=${category.slug}`} key={category.slug}>
+              <Link
+                prefetch={false}
+                href={`/blog?cat=${category.slug}`}
+                key={category.slug}
+              >
                 <div className={`${styles.category} ${styles[category.slug]}`}>
                   {category.title}
                 </div>
