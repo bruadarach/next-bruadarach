@@ -29,6 +29,7 @@ const SocialAccount = () => {
           {socialAccounts.map((account, index) => (
             <li key={index}>
               <Link
+                prefetch={false}
                 href={account.href}
                 target="_blank"
                 passHref

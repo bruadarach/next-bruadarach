@@ -33,17 +33,22 @@ const Footer = () => {
       <div className={styles.links}>
         <div className={styles.list}>
           <span className={styles.listTitle}>Links</span>
-          <Link href="/">Homepage</Link>
+          <Link prefetch={false} href="/">
+            Homepage
+          </Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Contact</span>
-          <Link href="mailto:suji.sujeongji@gmail.com">Email</Link>
+          <Link prefetch={false} href="mailto:suji.sujeongji@gmail.com">
+            Email
+          </Link>
         </div>
         <div className={styles.list}>
           <span className={styles.listTitle}>Social</span>
           {socialAccounts.map((account, index) => (
             <li key={index}>
               <Link
+                prefetch={false}
                 href={account.href}
                 target="_blank"
                 passHref

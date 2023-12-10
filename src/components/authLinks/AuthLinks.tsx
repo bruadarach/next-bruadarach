@@ -51,7 +51,12 @@ const AuthLinks = () => {
       <div className={styles.desktop}>
         {status === "unauthenticated" ? (
           <div className={styles.links}>
-            <Link href="/" className={styles.link} onClick={closeMenu}>
+            <Link
+              prefetch={false}
+              href="/"
+              className={styles.link}
+              onClick={closeMenu}
+            >
               Home
             </Link>
             <Link
@@ -65,7 +70,12 @@ const AuthLinks = () => {
           </div>
         ) : (
           <div className={styles.links}>
-            <Link href="/" className={styles.link} onClick={closeMenu}>
+            <Link
+              prefetch={false}
+              href="/"
+              className={styles.link}
+              onClick={closeMenu}
+            >
               Home
             </Link>
             <Link
@@ -132,6 +142,7 @@ const AuthLinks = () => {
                     Write
                   </Link>
                   <Link
+                    prefetch={false}
                     href="/"
                     onClick={(e) => {
                       e.stopPropagation();
