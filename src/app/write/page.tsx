@@ -18,7 +18,7 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import Loading from "@/components/loading/Loading";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 interface FileData {
   lastModified: number;
@@ -43,9 +43,9 @@ const Write = () => {
     }
   }, [router, status]);
 
-  useEffect(() => {
-    const sanitizedHtml = DOMPurify.sanitize(value);
-  }, [value]);
+  // useEffect(() => {
+  //   const sanitizedHtml = DOMPurify.sanitize(value);
+  // }, [value]);
 
   useEffect(() => {
     if (file) {
@@ -109,7 +109,7 @@ const Write = () => {
   };
 
   const handleSubmit = async () => {
-    const sanitizedHtml = DOMPurify.sanitize(value);
+    // const sanitizedHtml = DOMPurify.sanitize(value);
 
     if (title === "" || value === "" || media === null) {
       alert("Please fill all required fields.");
@@ -120,7 +120,8 @@ const Write = () => {
       method: "POST",
       body: JSON.stringify({
         title: title,
-        desc: sanitizedHtml,
+        // desc: sanitizedHtml,
+        desc: value,
         img: media,
         slug: slugify(title),
         catSlug: catSlug,
