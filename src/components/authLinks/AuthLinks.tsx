@@ -54,7 +54,12 @@ const AuthLinks = () => {
             <Link href="/" className={styles.link} onClick={closeMenu}>
               Home
             </Link>
-            <Link href="/login" className={styles.link} onClick={closeMenu}>
+            <Link
+              prefetch={false}
+              href="/login"
+              className={styles.link}
+              onClick={closeMenu}
+            >
               Login
             </Link>
           </div>
@@ -63,7 +68,12 @@ const AuthLinks = () => {
             <Link href="/" className={styles.link} onClick={closeMenu}>
               Home
             </Link>
-            <Link href="/write" className={styles.link} onClick={closeMenu}>
+            <Link
+              prefetch={false}
+              href="/write"
+              className={styles.link}
+              onClick={closeMenu}
+            >
               Write
             </Link>
             <span className={styles.link} onClick={() => signOut()}>
@@ -100,6 +110,7 @@ const AuthLinks = () => {
               </div>
               {status === "unauthenticated" ? (
                 <Link
+                  prefetch={false}
                   href="/login"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -111,6 +122,7 @@ const AuthLinks = () => {
               ) : (
                 <>
                   <Link
+                    prefetch={false}
                     href="/write"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -134,6 +146,7 @@ const AuthLinks = () => {
               <div className={styles.borderLine}></div>
               {categories?.map((cat: Category) => (
                 <Link
+                  prefetch={false}
                   href={`/blog?cat=${cat.slug}`}
                   key={cat.slug}
                   onClick={(e) => {

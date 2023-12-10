@@ -26,14 +26,18 @@ const Card = ({ post }: { post: Post }) => {
             {new Date(post.createdAt).toLocaleDateString()}
           </span>
         </div>
-        <Link href={`/posts/${post.slug}`}>
+        <Link prefetch={false} href={`/posts/${post.slug}`}>
           <h1 className={styles.title}>{post.title}</h1>
         </Link>
         <p
           className={styles.desc}
           dangerouslySetInnerHTML={{ __html: post.desc }}
         />
-        <Link href={`/posts/${post.slug}`} className={styles.link}>
+        <Link
+          prefetch={false}
+          href={`/posts/${post.slug}`}
+          className={styles.link}
+        >
           Read More ➚
         </Link>
       </div>

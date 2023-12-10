@@ -6,7 +6,11 @@ import { Post } from "../../../prisma/schemaTypes";
 const SidePost = ({ post }: { post: Post }) => {
   return (
     <div key={post?.slug} className={styles.items}>
-      <Link href={`/posts/${post?.slug}`} className={styles.item}>
+      <Link
+        prefetch={false}
+        href={`/posts/${post?.slug}`}
+        className={styles.item}
+      >
         {post?.img && (
           <div className={styles.imageContainer}>
             <Image

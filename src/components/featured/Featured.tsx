@@ -43,7 +43,7 @@ const Featured = async () => {
             </div>
           )}
           <div className={styles.textContainer}>
-            <Link href={`/posts/${post?.slug}`}>
+            <Link prefetch={false} href={`/posts/${post?.slug}`}>
               <h2 className={styles.postTitle}>{post?.title}</h2>
             </Link>
             {post?.desc && (
@@ -52,7 +52,11 @@ const Featured = async () => {
                 dangerouslySetInnerHTML={{ __html: post?.desc }}
               />
             )}
-            <Link href={`/posts/${post?.slug}`} className={styles.link}>
+            <Link
+              prefetch={false}
+              href={`/posts/${post?.slug}`}
+              className={styles.link}
+            >
               Read More
             </Link>
           </div>
