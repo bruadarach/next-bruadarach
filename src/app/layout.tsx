@@ -32,18 +32,18 @@ export default function RootLayout({
         className={`${inter.variable} ${openSans.variable} ${nunitoSans.variable} ${roboto.variable} ${permanentMarker.variable} ${croissantOne.variable}`}
       >
         <AuthProvider>
-          <ThemeContextProvider>
-            <ThemeProvider>
-              <div className="container">
-                <div className="wrapper">
-                  <Navbar />
-                  {children}
-                  <Footer />
-                </div>
-              </div>
-              <Analytics />
-            </ThemeProvider>
-          </ThemeContextProvider>
+          {/* <ThemeContextProvider>
+            <ThemeProvider> */}
+          <div className="container">
+            <div className="wrapper">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+          </div>
+          <Analytics />
+          {/* </ThemeProvider>
+          </ThemeContextProvider> */}
         </AuthProvider>
       </body>
     </html>
