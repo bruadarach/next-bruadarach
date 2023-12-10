@@ -15,7 +15,6 @@ const Footer = () => {
             width={30}
             height={30}
             style={{ borderRadius: "50%" }}
-            priority
           />
           <h1 className={styles.logoText}>Bruadarach</h1>
         </div>

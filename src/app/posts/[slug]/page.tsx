@@ -56,7 +56,6 @@ const singlePage = async ({ params }: singlePageProps) => {
                 alt="user"
                 width={42}
                 height={42}
-                priority
                 className={styles.userImage}
               />
             </div>
@@ -84,7 +83,6 @@ const singlePage = async ({ params }: singlePageProps) => {
                 alt="article"
                 fill
                 sizes="100%"
-                priority
                 className={styles.articleImage}
               />
             </div>

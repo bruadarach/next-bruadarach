@@ -225,13 +225,7 @@ const Edit = ({ params }: { params: { slug: string } }) => {
           />
           <button className={styles.addButton}>
             <label htmlFor="image">
-              <Image
-                src="/image.png"
-                alt="plus"
-                width={16}
-                height={16}
-                priority
-              />
+              <Image src="/image.png" alt="plus" width={16} height={16} />
             </label>
           </button>
         </div>
@@ -246,7 +240,6 @@ const Edit = ({ params }: { params: { slug: string } }) => {
                   alt="thumbnail"
                   fill
                   sizes="100%"
-                  priority
                   className={styles.image}
                 />
               </div>

@@ -25,7 +25,6 @@ const BlogPage = ({ searchParams }: Props) => {
               alt="thumbnail"
               fill
               sizes="100%"
-              priority
               className={styles.image}
             />
           </div>

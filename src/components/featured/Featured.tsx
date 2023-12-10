@@ -38,7 +38,6 @@ const Featured = async () => {
                 fill
                 sizes="100%"
                 className={styles.image}
-                priority={true}
               />
             </div>
           )}
