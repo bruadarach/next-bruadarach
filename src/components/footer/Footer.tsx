@@ -33,7 +33,16 @@ const Footer = () => {
         <div className={styles.list}>
           <span className={styles.listTitle}>Links</span>
           <Link prefetch={false} href="/">
-            Homepage
+            Home
+          </Link>
+          <Link
+            prefetch={false}
+            href={"https://www.sujeongji.com/"}
+            target="_blank"
+            passHref
+            rel="noopener noreferrer"
+          >
+            Portfolio
           </Link>
         </div>
         <div className={styles.list}>
