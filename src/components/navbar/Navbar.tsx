@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.social}>
         <SocialAccount />
-        {/* <ThemeToggle /> */}
+        <ThemeToggle />
       </div>
       <div className={styles.logo}>
         <Logo title={"BRUADARACH."} />
