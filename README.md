@@ -1,17 +1,16 @@
 # Bruadarach
-
-This is a full-stack project, built with Next.js and integrated with MongoDB. </br>
-It offers OAuth via Next-Auth. </br>
-
-🔗 Link: [https://next-bruadarach.vercel.app/](https://next-bruadarach.vercel.app/)</br>
-
+This web app provides information on Korean culture, events, and news to help foreigners living in Korea.  </br>
 
 ## Tech Stacks
-![blog-bruadarach (2)](https://github.com/bruadarach/next-blog/assets/55401378/d0af9250-80e4-4af5-b895-f2c7b35707d9)
-
+<img width="700" alt="tech_stack_bruadarach" src="https://github.com/bruadarach/next-bruadarach/assets/55401378/a86391da-a623-4501-a349-8371e97474d7">
+</br>
 
 ## ERD
-<img width="968" alt="Screen Shot 2023-10-20 at 9 00 37 PM" src="https://github.com/bruadarach/next-blog/assets/55401378/8651667d-1b80-4e87-aef2-6a8cf25c0a3c">
+<img width="700" alt="ERD" src="https://github.com/bruadarach/next-bruadarach/assets/55401378/4ae4fe54-7822-411e-9dca-92de79e5a886">
+</br>
+
+
+
 
 
 
