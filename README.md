@@ -1,5 +1,7 @@
 # Bruadarach
-This web app provides information on Korean culture, events, and news to help foreigners living in Korea.  </br>
+This web application provides information on Korean culture, events, and news to help foreigners living in Korea.  </br>
+
+🔗 Link: [https://next-bruadarach.vercel.app](https://next-bruadarach.vercel.app/) </br>
 
 ## Tech Stacks
 <img width="700" alt="tech_stack_bruadarach" src="https://github.com/bruadarach/next-bruadarach/assets/55401378/a86391da-a623-4501-a349-8371e97474d7">
